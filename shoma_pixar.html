@@ -17,7 +17,7 @@
   --ink:       #1A1A1A;
   --ink-mid:   #5A5A5A;
   --ink-light: #9A9A9A;
-  --navy:      #0E1B2D;
+  --navy:      #09121d;
   --amber:     #D4922A;
   --amber-dim: #A87020;
   --display:   'Inter', sans-serif;
@@ -375,7 +375,16 @@ a { text-decoration: none; color: inherit; }
 ═══════════════════════════════════ */
 #world {
   background: var(--off-white);
-  padding: 120px 56px;
+  padding: 0;
+}
+#world .world-inner,
+#world .world-list {
+  padding-left: 56px;
+  padding-right: 56px;
+}
+#world .world-list {
+  padding-top: 100px;
+  padding-bottom: 140px;
 }
 .world-inner {
   max-width: 1100px; margin: 0 auto;
@@ -758,13 +767,13 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 }
 .shd::before {
   content: ''; position: absolute; top: -1px; z-index: 3;
-  left: -5%; width: 110%; height: 80px;
+  left: -10%; width: 120%; height: 80px;
   background: var(--white);
   border-radius: 0 0 50% 50% / 0 0 100% 100%;
 }
 .shd::after {
   content: ''; position: absolute; bottom: -1px; z-index: 3;
-  left: -5%; width: 110%; height: 80px;
+  left: -10%; width: 120%; height: 80px;
   background: var(--white);
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
 }
@@ -952,26 +961,39 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
   border-radius: 50% 50% 0 0 / 100% 100% 0 0;
   pointer-events: none;
 }
-/* shd::after(곡선)가 흰색으로 내려오는 걸 gallery 안에선 navy로 */
+/* shd::after(곡선) 갤러리에선 완전히 제거 → 배경이미지가 네이비로 자연스럽게 연결 */
 #gallery .shd::after {
-  background: var(--navy);
+  display: none;
+}
+/* 갤러리 shd 하단: 배경이미지 → 완전한 네이비로 페이드 */
+#gallery .shd-overlay {
+  background: linear-gradient(
+    to bottom,
+    rgba(9,18,29,0.1)  0%,
+    rgba(9,18,29,0.15) 40%,
+    rgba(9,18,29,0.75) 72%,
+    rgba(9,18,29,1)    100%
+  );
+}
+/* shd 자체도 overflow 허용해서 아래 콘텐츠와 연결 */
+#gallery .shd {
+  overflow: visible;
+  margin-bottom: 0;
 }
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4px; padding: 4px 0 200px;
+  gap: 4px; padding: 60px 48px 200px;
 }
 .g-item {
   position: relative; overflow: hidden;
   aspect-ratio: 16/10; cursor: pointer;
   background: var(--navy);
 }
-.g-item--large {
-  grid-column: span 2;
-  grid-row: span 2;
-  aspect-ratio: unset;
-}
-.g-item--wide { grid-column: span 2; }
+.g-item--large { grid-column: span 2; grid-row: span 2; }
+.g-item--wide  { grid-column: span 2; }
+.g-item--tall  { grid-row: span 2; aspect-ratio: unset; }
+.g-item--full  { grid-column: span 3; aspect-ratio: 21/9; }
 .g-img {
   width: 100%; height: 100%; min-height: 200px;
   background-size: cover; background-position: center;
@@ -979,6 +1001,7 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
   transition: transform 0.5s ease;
 }
 .g-item--large .g-img { min-height: 440px; }
+.g-item--tall  .g-img { min-height: 400px; }
 .g-item:hover .g-img { transform: scale(1.04); }
 .g-hover {
   position: absolute; inset: 0;
@@ -1164,6 +1187,8 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
   .g-item--large { grid-column: span 2; }
   .g-item--large .g-img { min-height: 50vw; }
   .g-item--wide { grid-column: span 2; }
+  .g-item--tall { grid-row: span 1; }
+  .g-item--full { grid-column: span 2; aspect-ratio: 16/9; }
 
   /* ABOUT */
   #about { padding: 80px 24px; }
@@ -1265,7 +1290,7 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 <section id="synopsis">
   <div class="synopsis-inner">
     <h2 class="synopsis-tagline reveal i18n" data-ko="&quot;나를 진정으로 이해해주는<br>존재를 만들고 싶어.&quot;" data-en="&quot;I want to create something<br>that truly understands me.&quot;">"나를 진정으로 이해해주는<br>존재를 만들고 싶어."</h2>
-    <p class="synopsis-text reveal i18n" data-ko="아무도 모르게 작은 작업실에서 시작된 한 소년의 연구.<br>인간을 이해하기 위해 만들어진 새로운 존재, HARMONY.<br>그리고 그것을 세상에 증명하기 위한 작은 레이싱팀, STRAY.<br>그들의 이야기는 예상치 못한 곳에서 새로운 미래를 마주하게 된다." data-en="A boy's quiet research, begun in a small garage no one knew about.<br>HARMONY — a new kind of AI built to understand human beings.<br>And STRAY — a small racing team formed to prove it to the world.<br>Their story leads them somewhere none of them expected.">아무도 모르게 작은 작업실에서 시작된 한 소년의 연구.<br>인간을 이해하기 위해 만들어진 새로운 존재, HARMONY.<br>그리고 그것을 세상에 증명하기 위한 작은 레이싱팀, STRAY.<br>그들의 이야기는 예상치 못한 곳에서 새로운 미래를 마주하게 된다.</p>
+    <p class="synopsis-text reveal i18n" data-ko="한 소년의 외로움에서 시작된 새로운 인공지능, HARMONY.<br>그리고 그 가능성을 세상에 증명하기 위해 만들어진 레이싱팀, STRAY.<br>그들의 이야기는 기술 너머의 새로운 미래를 향해 달려간다." data-en="A new intelligence born from a lonely boy’s dream: HARMONY.<br>To prove its potential to the world, Shoma forms STRAY.<br>Along the way, he discovers a new relationship between humanity and technology.">한 소년의 외로움에서 시작된 새로운 인공지능, HARMONY.<br>그리고 그 가능성을 세상에 증명하기 위해 만들어진 레이싱팀, STRAY.<br>그들의 이야기는 기술 너머의 새로운 미래를 향해 달려간다.</p>
   </div>
 </section>
 
@@ -1378,7 +1403,7 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 
   <!-- 풀스크린 헤더 (곡선 스타일) -->
   <div class="shd">
-    <div class="shd-bg" style="background-image:url('images/glorybay_hero1-4.png');"></div>
+    <div class="shd-bg" style="background-image:url('images/월드제목이미지.png');"></div>
     <div class="shd-overlay"></div>
     <h2>THE WORLD</h2>
   </div>
@@ -1393,9 +1418,9 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
         <p class="world-item-desc i18n" data-ko="최첨단 기술과 거대 기업, 국민 레이싱 스포츠 문화가 자리 잡은 화려한 항구 도시.<br>쇼마가 동경하는 기회의 도시이자, 랫타운과 가까이 맞닿아 있는 곳." data-en="A dazzling port city shaped by cutting-edge technology, powerful corporations, and a thriving racing culture.<br>The city of opportunity Shoma dreams of — right next to Rattown.">최첨단 기술과 거대 기업, 국민 레이싱 스포츠 문화가 자리 잡은 화려한 항구 도시.<br>쇼마가 동경하는 기회의 도시이자, 랫타운과 가까이 맞닿아 있는 곳.</p>
       
         <div class="world-item-thumbs">
-          <div class="world-item-thumb" id="glorybayT1"></div>
-          <div class="world-item-thumb" id="glorybayT2"></div>
-          <div class="world-item-thumb" id="glorybayT3"></div>
+          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/모멘트페이지1.png');"></div>
+          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/글로리베이미니이미지2.png');"></div>
+          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/글로리베이미니이미지.jpg');"></div>
           <div class="world-item-thumb" id="glorybayT4"></div>
         </div>
       </div>
@@ -1423,9 +1448,9 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
         <p class="world-item-desc i18n" data-ko="드라이버와 차량만 경쟁하는 레이스가 아니다. 매 시즌마다 각광받는 AI, 소프트웨어, 차량 기술이 함께 경쟁하는 세계적인 기술 레이싱 스포츠." data-en="More than a race between drivers and machines. A world-class technology racing sport where AI, software, and vehicle engineering compete every season.">드라이버와 차량만 경쟁하는 레이스가 아니다. 매 시즌마다 각광받는 AI, 소프트웨어, 차량 기술이 함께 경쟁하는 세계적인 기술 레이싱 스포츠.</p>
       
         <div class="world-item-thumbs">
-          <div class="world-item-thumb" id="stratosT1"></div>
-          <div class="world-item-thumb" id="stratosT2"></div>
-          <div class="world-item-thumb" id="stratosT3"></div>
+          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/스트라토스컵미니이미지.png');"></div>
+          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/스트라토스컵미니이미지2.png');"></div>
+          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/흠.png');"></div>
           <div class="world-item-thumb" id="stratosT4"></div>
         </div>
       </div>
@@ -1475,7 +1500,7 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 <!-- TEAMS -->
 <section id="teams">
   <div class="shd">
-    <div class="shd-bg" style="background-image:url('images/teams_header.png');"></div>
+    <div class="shd-bg" style="background-image:url('images/팀제목이미지.png');"></div>
     <div class="shd-overlay"></div>
     <h2>TEAMS</h2>
   </div>
@@ -1548,7 +1573,7 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
       </div>
       <div class="world-item-info">
         <h3 class="world-item-name">HARMONY</h3>
-        <p class="world-item-desc i18n" data-ko="인간을 대신하는 AI가 아니라, 인간과 함께하며 인간의 가능성을 끌어내기 위해 만들어진 AI. 사람의 감정과 성향, 기억과 관계를 이해하고 스스로 성장하고 선택할 수 있도록 돕는다." data-en="Not an AI built to replace humans — but one built to walk alongside them and draw out their potential. HARMONY understands a person's emotions, personality, memories, and relationships, helping them grow and make their own choices.">인간을 대신하는 AI가 아니라, 인간과 함께하며 인간의 가능성을 끌어내기 위해 만들어진 AI. 사람의 감정과 성향, 기억과 관계를 이해하고 스스로 성장하고 선택할 수 있도록 돕는다.</p>
+        <p class="world-item-desc i18n" data-ko="인간을 대신하기 위해 만들어진 AI가 아니라, 인간과 함께하며 인간의 감정과 의도를 이해하도록 설계된 새로운 형태의 지능. HARMONY는 사용자의 상황과 경험을 공유하고, 그 안에서 스스로 판단하며 점차 자신만의 가치관을 형성해간다." data-en="Not an AI created to replace humans, but a new form of intelligence designed to understand human emotions and intentions while existing alongside them. HARMONY shares its user's experiences and circumstances, makes its own judgments within that connection, and gradually develops its own values.">인간을 대신하기 위해 만들어진 AI가 아니라, 인간과 함께하며 인간의 감정과 의도를 이해하도록 설계된 새로운 형태의 지능. HARMONY는 사용자의 상황과 경험을 공유하고, 그 안에서 스스로 판단하며 점차 자신만의 가치관을 형성해간다.</p>
       </div>
     </div>
 
@@ -1559,46 +1584,83 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 <section id="gallery">
 
   <div class="shd">
-    <div class="shd-bg" style="background-image:url('images/gallery_header.png');"></div>
+    <div class="shd-bg" style="background-image:url('images/갤러리제목이미지.png');"></div>
     <div class="shd-overlay"></div>
     <h2>GALLERY</h2>
   </div>
 
   <div class="gallery-grid">
 
+    <!-- 01: 대형 (2열×2행) -->
     <div class="g-item g-item--large" data-src="images/gallery1.png">
       <div class="g-img" id="g1" style="background-image:url('images/gallery1.png');"></div>
       <div class="g-hover"><span class="g-num">01</span></div>
     </div>
 
+    <!-- 02 -->
     <div class="g-item" data-src="images/gallery2.png">
       <div class="g-img" id="g2" style="background-image:url('images/gallery2.png');"></div>
       <div class="g-hover"><span class="g-num">02</span></div>
     </div>
 
+    <!-- 03 -->
     <div class="g-item" data-src="images/gallery3.png">
-      <div class="g-img" id="g3" style="background-image:url('images/gallery3.png');"></div>
+      <div class="g-img" id="g3" style="background-image:url('images/gallery8.png');"></div>
       <div class="g-hover"><span class="g-num">03</span></div>
     </div>
 
+    <!-- 04 -->
     <div class="g-item" data-src="images/gallery4.png">
-      <div class="g-img" id="g4" style="background-image:url('images/gallery4.png');"></div>
+      <div class="g-img" id="g4" style="background-image:url('images/gallery3.png');"></div>
       <div class="g-hover"><span class="g-num">04</span></div>
     </div>
 
+    <!-- 05 -->
     <div class="g-item" data-src="images/gallery5.png">
       <div class="g-img" id="g5" style="background-image:url('images/gallery5.png');"></div>
       <div class="g-hover"><span class="g-num">05</span></div>
     </div>
 
+    <!-- 06: 와이드 (2열) -->
     <div class="g-item g-item--wide" data-src="images/gallery6.png">
-      <div class="g-img" id="g6" style="background-image:url('images/gallery6.png');"></div>
+      <div class="g-img" id="g6" style="background-image:url('images/gallery9.png');"></div>
       <div class="g-hover"><span class="g-num">06</span></div>
     </div>
 
+    <!-- 07 -->
     <div class="g-item" data-src="images/gallery7.png">
       <div class="g-img" id="g7" style="background-image:url('images/gallery7.png');"></div>
       <div class="g-hover"><span class="g-num">07</span></div>
+    </div>
+
+    <!-- 08: 오른쪽 대형 (1열×2행) -->
+    <div class="g-item g-item--tall" data-src="images/gallery8.png">
+      <div class="g-img" id="g8" style="background-image:url('images/gallery4.png');"></div>
+      <div class="g-hover"><span class="g-num">08</span></div>
+    </div>
+
+    <!-- 09 -->
+    <div class="g-item" data-src="images/gallery9.png">
+      <div class="g-img" id="g9" style="background-image:url('images/gallery.png');"></div>
+      <div class="g-hover"><span class="g-num">09</span></div>
+    </div>
+
+    <!-- 10 -->
+    <div class="g-item" data-src="images/gallery10.png">
+      <div class="g-img" id="g10" style="background-image:url('images/gallery10.png');"></div>
+      <div class="g-hover"><span class="g-num">10</span></div>
+    </div>
+
+    <!-- 11: 풀와이드 (3열) -->
+    <div class="g-item g-item--full" data-src="images/gallery11.png">
+      <div class="g-img" id="g11" style="background-image:url('images/gallery6.png');"></div>
+      <div class="g-hover"><span class="g-num">11</span></div>
+    </div>
+
+    <!-- 12 -->
+    <div class="g-item" data-src="images/gallery12.png">
+      <div class="g-img" id="g12" style="background-image:url('images/gallery12.png');"></div>
+      <div class="g-hover"><span class="g-num">12</span></div>
     </div>
 
   </div>
@@ -1634,7 +1696,7 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 /* ── CHARACTERS FROZEN STYLE ── */
 (function() {
   const DATA = {
-    shoma:  { role:'AI Engineer · The Prodigy',  name:'SHOMA KURODA', desc:'랫타운 출신 18살 AI 천재. 어린 시절부터 AI와 소프트웨어 분야에 뛰어났으며 나이에 걸맞지 않는 비범한 발명을 해온다. 머리는 비상하지만 체구는 굉장히 왜소하고 작아서 18세로 보이지 않아 무시를 자주 받는다. 스트라토스 컵에 HARMONY를 증명하기 위해 팀을 만든다.', descEn:'An 18-year-old AI prodigy from Rattown. Gifted with AI and software from a young age, he has made inventions far beyond his years. Despite his sharp mind, his small frame means people rarely take him seriously. He builds STRAY to prove HARMONY to the world.', img:'images/쇼마프로필.png' },
+    shoma:  { role:'AI Engineer · The Prodigy',  name:'SHOMA KURODA', desc:'랫타운 출신 18살의 AI 천재. 어린 시절부터 AI와 소프트웨어에 뛰어난 재능을 보였으며, WONDERWORKS 연구소에서 인간의 의도와 감정을 이해하는 새로운 지능 HARMONY를 구상한다. 마틴과 연구원들의 도움으로 HARMONY를 완성한 뒤, 자신의 기술을 세상에 증명하기 위해 STRAY를 만든다.', descEn:'An 18-year-old AI prodigy from Rattown. Gifted in AI and software from a young age, he conceives HARMONY at Wonderworks — a new form of intelligence designed to understand human emotions and intentions. With the help of Martin and the researchers, he completes HARMONY and forms STRAY to prove its potential to the world.', img:'images/쇼마프로필.png' },
     gavin:  { role:'Mechanic · Team Lead',        name:'GAVIN HAYES',  desc:'랫타운에서 살아가는 24세 엔지니어. 어린 시절부터 차량과 기계에 관심이 많았으며, 현재는 항구 정비공으로 일하며, 쇼마의 HARMONY와 함께 레이싱카를 제작해 STRAY를 만든다.', descEn:'A 24-year-old engineer from Rattown. Passionate about vehicles and machinery since childhood, he now works as a port mechanic. Together with Shoma and HARMONY, he builds the racing car and co-founds STRAY.', img:'images/게빈프로필.png' },
     enna:   { role:'driver · The Rival',           name:'ENNA BLAKE',   desc:'글로리베이의 유명 레이싱 팀 ASTERA에서 활동하는 젊은 드라이버. 활발하고 솔직한 성격으로, 처음에는 랫타운 출신의 STRAY를 대수롭지 않게 여겼지만 뛰어난 경기력을 직접 확인한 뒤 강력한 라이벌로 인정한다. 특히 게빈과는 사사건건 부딪히면서도 점차 특별한 관계를 만들어간다.', descEn:'A young driver for ASTERA, one of Glory Bay\'s top racing teams. Outspoken and direct, she initially dismissed STRAY — until she saw them race. She quickly recognizes them as a real rival, and builds an especially charged dynamic with Gavin.', img:'images/엔나프로필.png' },
     cole:    { role:'Driver · The Veteran',         name:'COLE MERCER',   desc:'한때 스트라토스 컵에서 활약했던 전설적인 레이서. 레이싱을 떠난 뒤 화물 트럭 기사로 살아가며 과거를 외면하고 있었지만, 쇼마와 게빈의 끈질긴 설득과 그들의 열정을 보고 다시 트랙으로 돌아온다. STRAY의 드라이버이자 팀의 중심으로서 두 사람에게 자신의 경험을 전한다.', descEn:'A legendary racer who once dominated the Stratos Cup. After leaving racing he disappeared into life as a freight driver — until Shoma and Gavin\'s persistence pulled him back. As STRAY\'s driver and anchor, he passes on everything he knows.', img:'images/콜프로필.png' },
@@ -1664,7 +1726,7 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
       portrait.style.backgroundImage = d.img ? `url('${d.img}')` : 'none';
       roleTxt.textContent = d.role;
       nameTxt.textContent = d.name;
-      descTxt.textContent = d.desc;
+      descTxt.textContent = (_lang === 'en' && d.descEn) ? d.descEn : d.desc;
       detail.classList.add('visible');
       detail.scrollIntoView({ behavior:'smooth', block:'nearest' });
     });
