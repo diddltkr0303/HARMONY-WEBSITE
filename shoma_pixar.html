@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HARMONY — Project: Shoma</title>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;900&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ═══════════════════════════════════
    TOKENS
@@ -18,8 +18,9 @@
   --navy:      #0E1B2D;
   --amber:     #D4922A;
   --amber-dim: #A87020;
-  --display:   'Barlow Condensed', sans-serif;
-  --body:      'Barlow', sans-serif;
+  --display:   'Inter', sans-serif;
+  --body:      'Inter', sans-serif;
+  --en:        'Inter', sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -187,7 +188,7 @@ a { text-decoration: none; color: inherit; }
   background-size: cover; background-position: center;
   cursor: pointer; position: relative; overflow: hidden;
   transition: opacity 0.2s;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 .scene-thumb.active { opacity: 1; }
 .scene-thumb:hover { opacity: 0.85; }
@@ -488,6 +489,505 @@ footer p {
   .world-card-big { grid-column: span 1; }
   footer { flex-direction: column; gap: 8px; text-align: center; }
 }
+
+/* ── FROZEN-STYLE CHARACTERS ── */
+#characters {
+  background: #fff;
+  padding: 80px 24px 100px;
+}
+#characters .section-eyebrow { color: var(--amber-dim); }
+#characters .section-title   { color: var(--navy); line-height: 1; }
+
+.fz-circles {
+  display: flex; flex-wrap: wrap;
+  justify-content: center;
+  gap: 28px 20px;
+  width: 100%; padding: 0 48px;
+  margin: 0 auto 56px;
+}
+.fz-item {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+  cursor: pointer;
+}
+.fz-circle {
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background-size: 110%;
+  background-position: center center;
+  background-color: #B8C8D8;
+  border: 3px solid transparent;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.fz-item:hover .fz-circle  { transform: scale(1.08); border-color: #1A3C5A; }
+.fz-item.active .fz-circle { transform: scale(1.1);  border-color: var(--amber-dim); }
+.fz-name {
+  font-size: 14px; font-weight: 600;
+  color: #1A3C5A; text-align: center;
+}
+
+.fz-detail {
+  display: none;
+  max-width: 960px; margin: 0 auto;
+  background: #fff;
+  border-radius: 20px;
+  padding: 64px 72px;
+  align-items: center; gap: 64px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.09);
+}
+.fz-detail.visible { display: flex; }
+
+.fz-detail-portrait {
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background-size: 110%;
+  background-position: center center;
+  background-color: #B8C8D8;
+  flex-shrink: 0;
+  border: 5px solid #f0f0f0;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.12);
+}
+.fz-detail-info {}
+.fz-detail-role {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--amber-dim); margin-bottom: 8px;
+  display: block;
+}
+.fz-detail-name {
+  font-family: var(--display); font-weight: 900;
+  font-size: 34px; line-height: 1;
+  color: var(--navy); margin-bottom: 14px;
+}
+.fz-detail-desc {
+  font-size: 15px; line-height: 1.8;
+  color: #4A5A6A;
+}
+
+/* ── PIXAR ELEMENTAL STYLE WORLD ── */
+#world { background: #fff; }
+
+/* 헤더 풀스크린 이미지 */
+.world-header {
+  position: relative;
+  width: 100%; height: 65vh; min-height: 420px;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.world-header-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  background-color: #0e1b2d;
+}
+.world-header-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+.world-header-title {
+  position: relative; z-index: 2;
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(48px, 9vw, 110px);
+  letter-spacing: 8px; color: #fff;
+  text-align: center;
+}
+
+/* 세계 아이템 리스트 */
+.world-list {
+  max-width: 1200px; margin: 0 auto;
+  padding: 100px 80px 140px;
+  display: flex; flex-direction: column; gap: 100px;
+}
+.world-item {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 72px; align-items: center;
+}
+.world-item:nth-child(even) {
+  grid-template-columns: 1fr 360px;
+}
+.world-item:nth-child(even) .world-item-portrait { order: 2; }
+.world-item:nth-child(even) .world-item-info     { order: 1; }
+
+.world-item-portrait {
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background-size: cover; background-position: center;
+  background-color: #C8D4DC;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  flex-shrink: 0;
+}
+.world-item-name {
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(28px, 4vw, 44px);
+  color: var(--ink); margin-bottom: 16px; line-height: 1;
+}
+.world-item-desc {
+  font-size: 17px; line-height: 1.85; color: var(--ink-mid);
+}
+
+@media (max-width: 760px) {
+  .world-item,
+  .world-item:nth-child(even) { grid-template-columns: 1fr; }
+  .world-item:nth-child(even) .world-item-portrait,
+  .world-item:nth-child(even) .world-item-info { order: unset; }
+  .world-item-portrait { width: 180px; height: 180px; margin: 0 auto; }
+  .world-list { padding: 60px 24px 80px; gap: 60px; }
+}
+
+/* ═══════════════════════ FONT UPDATE ═══════════════════════ */
+/* 영어 계열 UI 텍스트에 Jost(Futura 계열) 적용 */
+.section-eyebrow, .section-title, .synopsis-tagline,
+.world-item-name, .world-header-title, .shd h2,
+.team-name, .team-label, .tl-title, .crew-header-title,
+.fz-detail-name, .fz-detail-role, .nav-logo, .nav-links a {
+  font-family: var(--en);
+}
+
+/* ── Inter 기반 타이포 전면 재설정 ── */
+body { font-family: 'Inter', sans-serif; font-weight: 300; }
+
+/* 네비게이션 */
+.nav-logo {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+.nav-links a {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  letter-spacing: 2px;
+  font-size: 11px;
+}
+
+/* 섹션 아이라인 */
+.section-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  letter-spacing: 5px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+/* 섹션 대제목 */
+.section-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  letter-spacing: -1px;
+  font-size: clamp(40px, 6vw, 72px);
+}
+
+/* 어두운 헤더 섹션 제목 */
+.shd h2, .crew-header-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  font-size: clamp(48px, 9vw, 110px);
+}
+
+/* 시놉시스 */
+.synopsis-tagline {
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  letter-spacing: 0;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.3;
+}
+
+/* 월드/캐릭터 이름 */
+.world-item-name, .fz-detail-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+/* 팀명 */
+.team-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.team-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  letter-spacing: 5px;
+}
+
+/* 타임라인 */
+.tl-title {
+  font-family: 'Inter', sans-serif;
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-size: 22px;
+}
+.tl-year {
+  font-family: 'Inter', sans-serif;
+  font-weight: 200;
+  letter-spacing: 3px;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════ SHARED DARK HEADER ════════════════════ */
+.shd {
+  position: relative; width: 100%;
+  height: 70vh; min-height: 480px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--navy);
+}
+.shd-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  opacity: 0.75;
+}
+.shd-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,0.35);
+}
+.shd h2 {
+  position: relative; z-index: 2;
+  color: #fff; text-align: center;
+}
+.shd::before {
+  content: ''; position: absolute; top: -1px; z-index: 3;
+  left: -5%; width: 110%; height: 80px;
+  background: var(--white);
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+.shd::after {
+  content: ''; position: absolute; bottom: -1px; z-index: 3;
+  left: -5%; width: 110%; height: 80px;
+  background: var(--white);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+
+/* ═══════════════════ WORLD 서브이미지 ══════════════════════ */
+.world-header {
+  position: relative; width: 100%;
+  height: 65vh; min-height: 420px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+.world-header::before {
+  content: ''; position: absolute; top: -1px; z-index: 3;
+  left: -5%; width: 110%; height: 80px;
+  background: var(--white);
+  border-radius: 0 0 50% 50% / 0 0 100% 100%;
+}
+.world-header::after {
+  content: ''; position: absolute; bottom: -1px; z-index: 3;
+  left: -5%; width: 110%; height: 80px;
+  background: var(--white);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+}
+.world-item-thumbs {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 8px; margin-top: 24px;
+}
+.world-item-thumb {
+  aspect-ratio: 4/3;
+  background: #C0C8D4; background-size: cover; background-position: center;
+  border-radius: 4px; overflow: hidden;
+}
+
+/* ═══════════════════ TEAMS ══════════════════════════════════ */
+#teams { background: #fff; }
+.teams-container {
+  padding: 0;
+  max-width: none;
+}
+
+/* 두 팀 사이 구분 */
+.team-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, #E0E0E0, transparent);
+  margin: -60px 0;
+}
+
+.team-main-frame {
+  width: 100%; height: 100%;
+  min-height: 95vh;
+  background-size: contain;
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border-radius: 0;
+  margin: 0;
+  aspect-ratio: unset;
+}
+.team-astera .team-main-frame {
+  background-position: left bottom;
+}
+.team-image-side {
+  position: relative; overflow: hidden;
+  background: transparent;
+}
+/* 카드: 텍스트 20% | 이미지 80% */
+.team-card {
+  display: grid;
+  grid-template-columns: 20fr 80fr;
+  min-height: 75vh;
+  overflow: hidden;
+  margin: 0;
+}
+.team-stray, .team-astera { margin: 0; max-width: none; }
+.team-astera { grid-template-columns: 20fr 80fr; }
+
+.team-text {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 40px 80px 25%;
+}
+.team-uniforms {
+  display: flex; gap: 14px; margin-top: 32px;
+}
+.team-uniform {
+  width: 130px; aspect-ratio: 2/3;
+  background: #C8D0D8; background-size: cover;
+  background-position: center; border-radius: 8px; flex-shrink: 0;
+}
+.team-label {
+  font-size: 11px; font-weight: 300; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--amber-dim);
+  display: block; margin-bottom: 16px;
+}
+.team-name {
+  font-family: var(--en); font-weight: 200;
+  font-size: clamp(48px, 6vw, 88px); line-height: 0.9;
+  letter-spacing: 4px; text-transform: uppercase;
+  color: var(--navy); margin-bottom: 28px;
+}
+.team-desc {
+  color: #4A5A6A; font-size: 16px; line-height: 1.85;
+  max-width: 440px;
+}
+
+/* ═══════════════════ THE CONNECTION ════════════════════════ */
+#connection { background: #fff; }
+
+/* ═══════════════════ TIMELINE ══════════════════════════════ */
+#timeline { background: var(--off-white, #F7F5F2); }
+.timeline-list {
+  max-width: 700px; margin: 0 auto;
+  padding: 80px 40px 120px;
+  position: relative;
+}
+.timeline-list::before {
+  content: ''; position: absolute;
+  left: 19px; top: 100px; bottom: 80px;
+  width: 2px;
+  background: linear-gradient(to bottom,
+    transparent 0%, var(--amber) 5%,
+    var(--amber) 95%, transparent 100%);
+}
+.tl-item {
+  display: flex; gap: 0; margin-bottom: 56px;
+  position: relative; align-items: flex-start;
+}
+.tl-year {
+  font-family: var(--en); font-weight: 700;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--amber-dim); display: block; margin-bottom: 8px;
+}
+.tl-dot-col {
+  width: 32px; flex-shrink: 0;
+  display: flex; flex-direction: column; align-items: center;
+  position: relative; z-index: 1;
+}
+.tl-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--amber); margin-top: 4px;
+  box-shadow: 0 0 0 4px rgba(212,146,42,0.2);
+}
+.tl-arrow {
+  font-size: 18px; color: rgba(212,146,42,0.5);
+  margin-top: 8px;
+}
+.tl-content { flex: 1; padding-left: 16px; }
+.tl-title {
+  font-family: var(--display); font-weight: 900;
+  font-size: 26px; color: var(--navy); margin-bottom: 6px; line-height: 1;
+}
+.tl-desc { font-size: 15px; color: #4A5A6A; line-height: 1.75; }
+
+/* 타임라인 원형 프로필 */
+.tl-portrait {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  background-size: 130%;
+  background-position: center top;
+  background-color: #C8D4DC;
+  flex-shrink: 0;
+  border: 4px solid #E8EEF4;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+}
+.tl-item {
+  display: flex; gap: 0; margin-bottom: 64px;
+  position: relative; align-items: flex-start;
+}
+.tl-item-inner {
+  display: flex; gap: 32px; align-items: center;
+  flex: 1;
+}
+.tl-item:nth-child(odd)  .tl-item-inner { flex-direction: row; }
+.tl-item:nth-child(even) .tl-item-inner { flex-direction: row-reverse; }
+.tl-content { flex: 1; }
+
+/* ── GALLERY ── */
+#gallery {
+  background: var(--navy);
+  position: relative;
+}
+/* 갤러리 끝에서 화이트로 자연스럽게 전환 */
+#gallery::after {
+  content: ''; position: absolute; bottom: -1px; z-index: 3;
+  left: -5%; width: 110%; height: 80px;
+  background: var(--white);
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  pointer-events: none;
+}
+/* shd::after(곡선)가 흰색으로 내려오는 걸 gallery 안에선 navy로 */
+#gallery .shd::after {
+  background: var(--navy);
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px; padding: 4px 0 200px;
+}
+.g-item {
+  position: relative; overflow: hidden;
+  aspect-ratio: 16/10; cursor: pointer;
+  background: var(--navy);
+}
+.g-item--large {
+  grid-column: span 2;
+  grid-row: span 2;
+  aspect-ratio: unset;
+}
+.g-item--wide { grid-column: span 2; }
+.g-img {
+  width: 100%; height: 100%; min-height: 200px;
+  background-size: cover; background-position: center;
+  background-color: rgba(255,255,255,0.05);
+  transition: transform 0.5s ease;
+}
+.g-item--large .g-img { min-height: 440px; }
+.g-item:hover .g-img { transform: scale(1.04); }
+.g-hover {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 60%);
+  opacity: 0; transition: opacity 0.3s;
+  display: flex; align-items: flex-end; padding: 16px 20px;
+}
+.g-item:hover .g-hover { opacity: 1; }
+.g-num {
+  font-family: 'Inter', sans-serif; font-weight: 200;
+  font-size: 13px; letter-spacing: 3px;
+  color: rgba(255,255,255,0.85); text-transform: uppercase;
+}
+
 </style>
 </head>
 <body>
@@ -498,8 +998,10 @@ footer p {
   <ul class="nav-links">
     <li><a href="#scenes">Scenes</a></li>
     <li><a href="#characters">Characters</a></li>
-    <li><a href="#vehicles">Vehicles</a></li>
     <li><a href="#world">World</a></li>
+    <li><a href="#teams">Teams</a></li>
+    <li><a href="#connection">Connection</a></li>
+    <li><a href="#gallery">Gallery</a></li>
     <li><a href="#about">About</a></li>
   </ul>
 </nav>
@@ -516,8 +1018,8 @@ footer p {
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <span class="hero-eyebrow">Isaac Yang Presents</span>
-    <!-- 로고 이미지 사용 시 아래 h1 대신: <img src="images/HARMONY_LOGO.png" style="width:clamp(280px,50vw,720px);margin:0 auto;"> -->
-    <h1 class="hero-logo">HARMONY</h1>
+    <img src="images/HARMONY_LOGO.png" alt="HARMONY"
+         style="width:clamp(320px,62vw,920px);height:auto;display:block;margin:0 auto;filter:drop-shadow(0 4px 40px rgba(0,0,0,0.5));object-fit:contain;">
     <p class="hero-sub">Project: Shoma · 2042</p>
   </div>
 </section>
@@ -525,8 +1027,8 @@ footer p {
 <!-- SYNOPSIS -->
 <section id="synopsis">
   <div class="synopsis-inner">
-    <h2 class="synopsis-tagline reveal">한 소년의 발명이<br>도시의 미래를 뒤흔든다.</h2>
-    <p class="synopsis-text reveal">2042년, 랫타운. 미래 도시의 화려함에서 밀려난 곳에서 살아가는 18살의 소년 쇼마 쿠로다. 그는 자신이 만든 인공지능 시스템 HARMONY를 세상에 증명하기 위해 스트라토스 컵에 참가한다. 하지만 그를 기다리고 있는 것은 경쟁과 실패만이 아니었다.</p>
+    <h2 class="synopsis-tagline reveal">"나를 진정으로 이해해주는<br>존재를 만들고 싶어."</h2>
+    <p class="synopsis-text reveal">아무도 모르게 작은 작업실에서 시작된 한 소년의 연구.<br>인간을 이해하기 위해 만들어진 새로운 존재, HARMONY.<br>그리고 그것을 세상에 증명하기 위한 작은 레이싱팀, STRAY.<br>그들의 이야기는 예상치 못한 곳에서 새로운 미래를 마주하게 된다.</p>
   </div>
 </section>
 
@@ -560,144 +1062,318 @@ footer p {
 
 <!-- CREW HEADER -->
 <div id="crew-header">
-  <div class="crew-header-bg">
-    <!-- 교체: style="background-image:url('images/crew_header.png');" -->
-  </div>
+  <div class="crew-header-bg" style="background-image:url('images/the_crew.png');"></div>
   <h2 class="crew-header-title">THE CREW</h2>
 </div>
 
 <!-- CHARACTERS -->
 <section id="characters">
+  <div style="text-align:center; padding-bottom:48px;">
+    <span class="section-eyebrow">The Crew</span>
+    <h2 class="section-title">Characters</h2>
+  </div>
 
-  <!-- 쇼마 -->
-  <div class="char-card reveal">
-    <div class="char-portrait" style="background-image:url('images/shoma_image.png');"></div>
-    <div class="char-info">
-      <span class="char-role">AI Engineer · The Prodigy</span>
-      <h3 class="char-name">SHOMA<br>KURODA</h3>
-      <p class="char-quote">"I'm not broken. Just still building."</p>
-      <p class="char-desc">랫타운 출신 18살. AI와 소프트웨어에 천재적인 재능을 가진 소년. 스트라토스 컵 기술 경연대회에 나가기 위해 오래된 레이싱 머신을 되살리고, 그 안에 잠들어 있던 AI — HARMONY를 깨운다.</p>
-      <div class="char-thumbs">
-        <div class="char-thumb" style="background-image:url('images/shoma_image.png');"></div>
-        <div class="char-thumb"></div>
-        <div class="char-thumb"></div>
-      </div>
+  <!-- 원형 썸네일 12개 -->
+  <div class="fz-circles">
+    <div class="fz-item" data-key="shoma">
+      <div class="fz-circle" style="background-image:url('images/쇼마프로필.png');"></div>
+      <span class="fz-name">Shoma</span>
+    </div>
+    <div class="fz-item" data-key="gavin">
+      <div class="fz-circle" style="background-image:url('images/게빈프로필.png');"></div>
+      <span class="fz-name">Gavin</span>
+    </div>
+    <div class="fz-item" data-key="cole">
+      <div class="fz-circle" style="background-image:url('images/콜프로필.png');"></div>
+      <span class="fz-name">Cole</span>
+    </div>
+    <div class="fz-item" data-key="tino">
+      <div class="fz-circle" style="background-image:url('images/프로필.png');"></div>
+      <span class="fz-name">Tino</span>
+    </div>
+    <div class="fz-item" data-key="Nutwick">
+      <div class="fz-circle" style="background-image:url('images/너트윅프로필.png');"></div>
+      <span class="fz-name">Nutwick Twins</span>
+    </div>
+    <div class="fz-item" data-key="enna">
+      <div class="fz-circle" style="background-image:url('images/엔나프로필.png');"></div>
+      <span class="fz-name">Enna</span>
+    </div>
+    <div class="fz-item" data-key="duke">
+      <div class="fz-circle" style="background-image:url('images/듀크프로필.png');"></div>
+      <span class="fz-name">Duke</span>
+    </div>
+    <div class="fz-item" data-key="walt">
+      <div class="fz-circle"></div>
+      <span class="fz-name">Walt</span>
+    </div>
+    <div class="fz-item" data-key="maya">
+      <div class="fz-circle"></div>
+      <span class="fz-name">Maya</span>
+    </div>
+    <div class="fz-item" data-key="adrian">
+      <div class="fz-circle" style="background-image:url('images/애드리안프로필.png');"></div>
+      <span class="fz-name">Adrian</span>
+    </div>
+    <div class="fz-item" data-key="iris">
+      <div class="fz-circle" style="background-image:url('images/아이리스프로필.png');"></div>
+      <span class="fz-name">Iris</span>
+    </div>
+    <div class="fz-item" data-key="martin">
+      <div class="fz-circle"></div>
+      <span class="fz-name">Martin</span>
     </div>
   </div>
 
-  <!-- 게빈 -->
-  <div class="char-card reveal">
-    <div class="char-portrait" style="background-image:url('images/gavin_image.png');"></div>
-    <div class="char-info">
-      <span class="char-role">Mechanic · Team Lead</span>
-      <h3 class="char-name">GAVIN<br>HAYES</h3>
-      <p class="char-quote">"He taught me how to build. Not how to stay."</p>
-      <p class="char-desc">마틴 헤이스의 아들. 아버지가 자신들을 버렸다 믿으며 랫타운에서 정비공으로 살아왔다. 쇼마의 제안으로 레전드 카를 꺼내며 처음으로 아버지의 흔적과 마주한다.</p>
-      <div class="char-thumbs">
-        <div class="char-thumb" style="background-image:url('images/gavin_image.png');"></div>
-        <div class="char-thumb"></div>
-        <div class="char-thumb"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 엔나 -->
-  <div class="char-card reveal">
-    <div class="char-portrait"></div>
-    <div class="char-info">
-      <span class="char-role">Racer · The Rival</span>
-      <h3 class="char-name">ENNA<br>BLAKE</h3>
-      <p class="char-quote">"Catch me if you can."</p>
-      <p class="char-desc">글로리베이 소속 엘리트 레이서. 처음엔 랫타운 팀을 얕봤지만 예상 밖의 경기력에 강한 경쟁심을 느낀다. 라이벌에서 동반자로.</p>
-      <div class="char-thumbs">
-        <div class="char-thumb"></div>
-        <div class="char-thumb"></div>
-        <div class="char-thumb"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 콜 -->
-  <div class="char-card reveal">
-    <div class="char-portrait" style="background-image:url('images/cole_image.png');"></div>
-    <div class="char-info">
-      <span class="char-role">Driver · The Veteran</span>
-      <h3 class="char-name">COL<br>MERCER</h3>
-      <p class="char-quote">"One more lap. That's all I need."</p>
-      <p class="char-desc">한 시대를 풍미했던 스타 드라이버. 지금은 술에 절어 화물 트럭을 모는 몰락한 중년. 게빈에게서 마틴의 흔적을 보고 다시 트랙으로 돌아온다.</p>
-      <div class="char-thumbs">
-        <div class="char-thumb" style="background-image:url('images/cole_image.png');"></div>
-        <div class="char-thumb"></div>
-        <div class="char-thumb"></div>
-      </div>
+  <!-- 클릭 시 표시되는 상세 패널 -->
+  <div class="fz-detail" id="fzDetail">
+    <div class="fz-detail-portrait" id="fzPortrait"></div>
+    <div class="fz-detail-info">
+      <span class="fz-detail-role" id="fzRole"></span>
+      <h3 class="fz-detail-name" id="fzDetailName"></h3>
+      <p class="fz-detail-desc" id="fzDesc"></p>
     </div>
   </div>
 
 </section>
 
-<!-- VEHICLES -->
-<section id="vehicles">
-  <div class="vehicle-inner">
-    <span class="section-eyebrow">The Machine</span>
-    <h2 class="section-title">Legend Car</h2>
-    <div class="vehicle-img-wrap">
-      <!-- 교체: style="background-image:url('images/legend_car.png');" -->
-    </div>
-    <div class="vehicle-specs">
-      <div class="vehicle-spec">
-        <p class="vehicle-spec-label">AI System</p>
-        <p class="vehicle-spec-val">HARMONY</p>
-      </div>
-      <div class="vehicle-spec">
-        <p class="vehicle-spec-label">Origin</p>
-        <p class="vehicle-spec-val">Rattown</p>
-      </div>
-      <div class="vehicle-spec">
-        <p class="vehicle-spec-label">Built</p>
-        <p class="vehicle-spec-val">2027</p>
-      </div>
-      <div class="vehicle-spec">
-        <p class="vehicle-spec-label">Team</p>
-        <p class="vehicle-spec-val">STRAY</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WORLD -->
 <section id="world">
-  <div class="world-inner">
-    <span class="section-eyebrow reveal">The Setting · 2042</span>
-    <h2 class="section-title reveal">Two Worlds.<br>One Race.</h2>
-    <div class="world-grid">
-      <div class="world-card world-card-big reveal"
-        style="background-image:url('images/glorybay_hero1.png');">
-        <div class="world-card-overlay"></div>
-        <div class="world-card-content">
-          <span class="world-card-type">The City of Light</span>
-          <p class="world-card-name">Glory Bay</p>
-        </div>
-      </div>
-      <div class="world-card reveal">
-        <!-- 교체: style="background-image:url('images/rattown.png');" -->
-        <div class="world-card-overlay"></div>
-        <div class="world-card-content">
-          <span class="world-card-type">The Forgotten Zone</span>
-          <p class="world-card-name">Rattown</p>
-        </div>
-      </div>
-      <div class="world-card reveal">
-        <div class="world-card-overlay"></div>
-        <div class="world-card-content">
-          <span class="world-card-type">The Competition</span>
-          <p class="world-card-name">Stratos Cup</p>
+
+  <!-- 풀스크린 헤더 (곡선 스타일) -->
+  <div class="shd">
+    <div class="shd-bg" style="background-image:url('images/glorybay_hero1-4.png');"></div>
+    <div class="shd-overlay"></div>
+    <h2>THE WORLD</h2>
+  </div>
+
+  <!-- 세계 아이템 리스트 (Pixar Elemental 스타일) -->
+  <div class="world-list">
+
+    <div class="world-item reveal">
+      <div class="world-item-portrait" id="wpGlorybay" style="background-image: url('images/글로리베이프로필.png');"></div>
+      <div class="world-item-info">
+        <h3 class="world-item-name">Glory Bay</h3>
+        <p class="world-item-desc">최첨단 기술과 거대 기업, 국민 레이싱 스포츠 문화가 자리 잡은 화려한 항구 도시.<br>쇼마가 동경하는 기회의 도시이자, 랫타운과 가까이 맞닿아 있는 곳.</p>
+      
+        <div class="world-item-thumbs">
+          <div class="world-item-thumb" id="glorybayT1"></div>
+          <div class="world-item-thumb" id="glorybayT2"></div>
+          <div class="world-item-thumb" id="glorybayT3"></div>
+          <div class="world-item-thumb" id="glorybayT4"></div>
         </div>
       </div>
     </div>
+
+    <div class="world-item reveal">
+      <div class="world-item-portrait" id="wpGlorybay" style="background-image: url('images/랫타운프로필.png');"></div>
+      <div class="world-item-info">
+        <h3 class="world-item-name">Rattown</h3>
+        <p class="world-item-desc">개발이 늦고 기회가 부족한 낙후된 주거지역.<br>쇼마가 살아가는 곳이자, STRAY의 이야기가 시작되는 곳이다.</p>
+      
+        <div class="world-item-thumbs">
+          <div class="world-item-thumb" id="rattownT1"></div>
+          <div class="world-item-thumb" id="rattownT2"></div>
+          <div class="world-item-thumb" id="rattownT3"></div>
+          <div class="world-item-thumb" id="rattownT4"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="world-item reveal">
+      <div class="world-item-portrait" id="wpGlorybay" style="background-image: url('images/스트라토스컵프로필.png');"></div>
+      <div class="world-item-info">
+        <h3 class="world-item-name">Stratos Cup</h3>
+        <p class="world-item-desc">드라이버와 차량만 경쟁하는 레이스가 아니다. 매 시즌마다 각광받는 AI, 소프트웨어, 차량 기술이 함께 경쟁하는 세계적인 기술 레이싱 스포츠.</p>
+      
+        <div class="world-item-thumbs">
+          <div class="world-item-thumb" id="stratosT1"></div>
+          <div class="world-item-thumb" id="stratosT2"></div>
+          <div class="world-item-thumb" id="stratosT3"></div>
+          <div class="world-item-thumb" id="stratosT4"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="world-item reveal">
+      <div class="world-item-portrait" id="wpGlorybay" style="background-image: url('images/레드몬트고교프로필.png');"></div>
+      <div class="world-item-info">
+        <h3 class="world-item-name">Redmont High School</h3>
+        <p class="world-item-desc">랫타운과 인근 지역에 위치한 쇼마의 고등학교. 학생과 교사 모두가 꿈도 희망도 없이 삶을 연명만 하는 곳. 이런 무기력한 모습에 질린 쇼마는 학교생활 속에서도 연구를 멈추지 않고 자신의 기술을 발전시켜 나간다.</p>
+      
+        <div class="world-item-thumbs">
+          <div class="world-item-thumb" id="redmontT1"></div>
+          <div class="world-item-thumb" id="redmontT2"></div>
+          <div class="world-item-thumb" id="redmontT3"></div>
+          <div class="world-item-thumb" id="redmontT4"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="world-item reveal">
+      <div class="world-item-portrait" id="wpGlorybay" style="background-image: url('images/크레스턴대학프로필.png');"></div>
+      <div class="world-item-info">
+        <h3 class="world-item-name">Creston University</h3>
+        <p class="world-item-desc">글로리베이에 위치한 명문 공과대학. 첨단 공학과 기술 연구로 이름난 곳이지만, 학생들에게 정해진 길만을 요구하지 않는다. 자신의 아이디어를 직접 만들고 실패할 수 있는 자유로운 연구 문화가 이곳의 특징이다.</p>
+      
+        <div class="world-item-thumbs">
+          <div class="world-item-thumb" id="crestonT1"></div>
+          <div class="world-item-thumb" id="crestonT2"></div>
+          <div class="world-item-thumb" id="crestonT3"></div>
+          <div class="world-item-thumb" id="crestonT4"></div>
+        </div>
+      </div>
+    </div>
+        
+        
+        
+        
+        
+
   </div>
+
 </section>
 
 <!-- ABOUT -->
+
+<!-- TEAMS -->
+<section id="teams">
+  <div class="shd">
+    <div class="shd-bg" style="background-image:url('images/teams_header.png');"></div>
+    <div class="shd-overlay"></div>
+    <h2>TEAMS</h2>
+  </div>
+
+  <div class="teams-container">
+
+    <!-- TEAM STRAY -->
+    <div class="team-card team-stray reveal">
+      <div class="team-text">
+        <span class="team-label">Rattown-based</span>
+        <h3 class="team-name">TEAM<br>STRAY</h3>
+        <p class="team-desc">랫타운에서 시작된 신생 레이싱팀.<br>쇼마의 HARMONY와 게빈·콜을 비롯한 팀원들의 기술과 경험을 바탕으로 빠르게 성장하며 스트라토스 컵의 새로운 다크호스로 떠오른다.</p>
+        <div class="team-uniforms">
+          <div class="team-uniform" id="strayU1"></div>
+          <div class="team-uniform" id="strayU2"></div>
+          <div class="team-uniform" id="strayU3"></div>
+        </div>
+      </div>
+      <div class="team-image-side">
+        <div class="team-main-frame" id="strayMain" style="background-image:url('images/스트레이팀.png');"></div>
+      </div>
+    </div>
+
+    <div class="team-divider"></div>
+
+    <!-- TEAM ASTERA -->
+    <div class="team-card team-astera reveal">
+      <div class="team-text">
+        <span class="team-label">Glory Bay-based</span>
+        <h3 class="team-name">TEAM<br>ASTERA</h3>
+        <p class="team-desc">스트라토스 컵 상위권에서 경쟁하는 레이싱팀.<br>뛰어난 드라이버 엔나 블레이크를 중심으로 꾸준히 좋은 성적을 거두며 STRAY와 치열한 라이벌 관계를 형성한다.</p>
+        <div class="team-uniforms">
+          <div class="team-uniform" id="asteraU1"></div>
+          <div class="team-uniform" id="asteraU2"></div>
+          <div class="team-uniform" id="asteraU3"></div>
+        </div>
+      </div>
+      <div class="team-image-side">
+        <div class="team-main-frame" id="asteraMain" style="background-image:url('images/아스테라팀.png');"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- THE CONNECTION -->
+<section id="connection">
+  <div class="shd">
+    <div class="shd-bg" style="background-image:url('images/connection_header.png');"></div>
+    <div class="shd-overlay"></div>
+    <h2>THE CONNECTION</h2>
+  </div>
+
+  <div class="world-list">
+
+    <div class="world-item reveal">
+      <div class="world-item-portrait" id="connHeart">
+        <!-- 교체: style="background-image:url('images/heart_profile.png');" -->
+      </div>
+      <div class="world-item-info">
+        <h3 class="world-item-name">H.E.A.R.T. PROJECT</h3>
+        <p style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--amber-dim);margin-bottom:12px;">Human Evolution & Adaptive Resonance Technology</p>
+        <p class="world-item-desc">H.E.A.R.T. PROJECT는 인간의 신경계와 AI를 연결해 인간의 신체적·인지적 한계를 보완하고, 궁극적으로 인간을 더 나은 존재로 만들기 위해 시작된 프로젝트다. 처음에는 신경 손상으로 하반신 마비 환자를 회복시키기 위한 의료 연구에서 출발했다.</p>
+      </div>
+    </div>
+
+    <div class="world-item reveal">
+      <div class="world-item-portrait" id="connHarmony">
+        <!-- 교체: style="background-image:url('images/harmony_profile.png');" -->
+      </div>
+      <div class="world-item-info">
+        <h3 class="world-item-name">HARMONY</h3>
+        <p class="world-item-desc">인간을 대신하는 AI가 아니라, 인간과 함께하며 인간의 가능성을 끌어내기 위해 만들어진 AI. 사람의 감정과 성향, 기억과 관계를 이해하고 스스로 성장하고 선택할 수 있도록 돕는다.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+
+  <div class="shd">
+    <div class="shd-bg" style="background-image:url('images/gallery_header.png');"></div>
+    <div class="shd-overlay"></div>
+    <h2>GALLERY</h2>
+  </div>
+
+  <div class="gallery-grid">
+
+    <div class="g-item g-item--large" data-src="images/gallery1.png">
+      <div class="g-img" id="g1" style="background-image:url('images/gallery1.png');"></div>
+      <div class="g-hover"><span class="g-num">01</span></div>
+    </div>
+
+    <div class="g-item" data-src="images/gallery2.png">
+      <div class="g-img" id="g2" style="background-image:url('images/gallery2.png');"></div>
+      <div class="g-hover"><span class="g-num">02</span></div>
+    </div>
+
+    <div class="g-item" data-src="images/gallery3.png">
+      <div class="g-img" id="g3" style="background-image:url('images/gallery3.png');"></div>
+      <div class="g-hover"><span class="g-num">03</span></div>
+    </div>
+
+    <div class="g-item" data-src="images/gallery4.png">
+      <div class="g-img" id="g4" style="background-image:url('images/gallery4.png');"></div>
+      <div class="g-hover"><span class="g-num">04</span></div>
+    </div>
+
+    <div class="g-item" data-src="images/gallery5.png">
+      <div class="g-img" id="g5" style="background-image:url('images/gallery5.png');"></div>
+      <div class="g-hover"><span class="g-num">05</span></div>
+    </div>
+
+    <div class="g-item g-item--wide" data-src="images/gallery6.png">
+      <div class="g-img" id="g6" style="background-image:url('images/gallery6.png');"></div>
+      <div class="g-hover"><span class="g-num">06</span></div>
+    </div>
+
+    <div class="g-item" data-src="images/gallery7.png">
+      <div class="g-img" id="g7" style="background-image:url('images/gallery7.png');"></div>
+      <div class="g-hover"><span class="g-num">07</span></div>
+    </div>
+
+  </div>
+
+  <!-- 라이트박스 -->
+  <div id="gLightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.92); z-index:9000; align-items:center; justify-content:center; cursor:pointer;" onclick="this.style.display='none'; document.body.style.overflow='';">
+    <span style="position:fixed;top:20px;right:32px;font-size:36px;color:#fff;font-weight:200;font-family:Inter,sans-serif;cursor:pointer;">×</span>
+    <img id="gLbImg" src="" style="max-width:90vw;max-height:90vh;object-fit:contain;" onclick="event.stopPropagation()">
+  </div>
+
+</section>
+
 <section id="about">
   <div class="about-inner">
     <span class="section-eyebrow reveal">Creator</span>
@@ -718,6 +1394,46 @@ footer p {
 </footer>
 
 <script>
+/* ── CHARACTERS FROZEN STYLE ── */
+(function() {
+  const DATA = {
+    shoma:  { role:'AI Engineer · The Prodigy',  name:'SHOMA KURODA', desc:'랫타운 출신 18살 AI 천재. 어린 시절부터 AI와 소프트웨어 분야에 뛰어났으며 나이에 걸맞지 않는 비범한 발명을 해온다. 머리는 비상하지만 체구는 굉장히 왜소하고 작아서 18세로 보이지 않아 무시를 자주 받는다. 스트라토스 컵에 HARMONY를 증명하기 위해 팀을 만든다.', img:'images/쇼마프로필.png' },
+    gavin:  { role:'Mechanic · Team Lead',        name:'GAVIN HAYES',  desc:'랫타운에서 살아가는 24세 엔지니어. 어린 시절부터 차량과 기계에 관심이 많았으며, 현재는 항구 정비공으로 일하며, 쇼마의 HARMONY와 함께 레이싱카를 제작해 STRAY를 만든다.', img:'images/게빈프로필.png' },
+    enna:   { role:'driver · The Rival',           name:'ENNA BLAKE',   desc:'글로리베이의 유명 레이싱 팀 ASTERA에서 활동하는 젊은 드라이버. 활발하고 솔직한 성격으로, 처음에는 랫타운 출신의 STRAY를 대수롭지 않게 여겼지만 뛰어난 경기력을 직접 확인한 뒤 강력한 라이벌로 인정한다. 특히 게빈과는 사사건건 부딪히면서도 점차 특별한 관계를 만들어간다.', img:'images/엔나프로필.png' },
+    cole:    { role:'Driver · The Veteran',         name:'COLE MERCER',   desc:'한때 스트라토스 컵에서 활약했던 전설적인 레이서. 레이싱을 떠난 뒤 화물 트럭 기사로 살아가며 과거를 외면하고 있었지만, 쇼마와 게빈의 끈질긴 설득과 그들의 열정을 보고 다시 트랙으로 돌아온다. STRAY의 드라이버이자 팀의 중심으로서 두 사람에게 자신의 경험을 전한다.', img:'images/콜프로필.png' },
+    tino:   { role:'Mascot · Companion',          name:'TINO',         desc:'쇼마가 직접 제작한 정비 로봇. HARMONY가 적용된 이후 인간의 행동과 감정을 이해하고 자연스럽게 소통할 수 있는 고지능 로봇으로 발전한다. STRAY의 작업실에서 차량 정비를 돕는 동시에 팀원들과 함께 생활하며 인간과 AI의 관계를 보여주는 특별한 존재가 된다.', img:'images/티노프로필.png' },
+    Nutwick: { role:'Pit Crew · Oddball',       name:'Nutwick twins', desc:'랫타운의 괴짜 쌍둥이 제이스와 잭스. 이들은 랫타운 지역의 크레스턴 대학교에 재학중이며 제이스는 역사학, 잭스는 인류학이라는 어울리지 않는 전공 수업을 듣는다. 전공 수업은 내팽겨치고 교내 동아리인 "등록금 내고 레이싱 클럽" 회원으로 활동하며 랫타운의 아마추어 레이싱장에서 피트 크루 용병 일을 한다.', img:'images/너트윅프로필.png' },
+    adrian: { role:'Antagonist · H.E.A.R.T.',     name:'ADRIAN WARD',  desc:'세계 최대 기술 기업 VENTEX의 H.E.A.R.T. Project를 이끄는 55세의 연구 책임자. 인간의 한계를 기술로 극복할 수 있다고 믿으며, HARMONY가 자신이 오랫동안 해결하지 못했던 문제의 열쇠라고 확신한다. 뛰어난 이성과 냉철한 판단력을 지녔지만, 그 이면에는 딸 아이리스를 되찾고자 하는 강한 집착이 자리하고 있다.', img:'images/애드리안프로필.png' },
+    duke: { role:'TBD', name:'DUKE MERIWETHER', desc:'ASTERA에서 활동하는 메인 정비사. 뛰어난 실력과 엄청난 체구에 비해 굉장히 겁이 많고 호들갑을 많이 떨며 감정의 폭이 크다. 간혹 감성에 젖어들기도 한다. 같은 팀 기술자인 왈트에게 매번 구박받지만 늘 신나있다.', img:'images/듀크프로필.png' },
+    walt: { role:'TBD', name:'WALT', desc:'Coming soon.', img:'' },
+    maya: { role:'TBD', name:'MAYA', desc:'Coming soon.', img:'' },
+    iris: { role:'TBD', name:'IRIS WARD', desc:'애드리안 워드의 딸로, 어린 시절 교통사고로 심각한 신경 손상을 입은 뒤 긴 시간 동안 재활과 방황을 겪는다. 자신의 삶이 한순간에 바뀐 경험을 통해 인간의 감정과 회복에 관심을 갖게 되었으며, 이후 심리학을 공부한다. 아버지와는 서로 다른 방식으로 인간의 불완전함을 바라보게 되는 인물이다.', img:'images/아이리스프로필.png' },
+    martin: { role:'TBD', name:'MARTIN', desc:'Coming soon.', img:'' },
+  };
+  const items   = document.querySelectorAll('.fz-item');
+  const detail  = document.getElementById('fzDetail');
+  const portrait= document.getElementById('fzPortrait');
+  const roleTxt = document.getElementById('fzRole');
+  const nameTxt = document.getElementById('fzDetailName');
+  const descTxt = document.getElementById('fzDesc');
+  if (!detail) return;
+
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const d = DATA[item.dataset.key];
+      if (!d) return;
+      items.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+      portrait.style.backgroundImage = d.img ? `url('${d.img}')` : 'none';
+      roleTxt.textContent = d.role;
+      nameTxt.textContent = d.name;
+      descTxt.textContent = d.desc;
+      detail.classList.add('visible');
+      detail.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    });
+  });
+})();
+
 /* ── NAV ── */
 window.addEventListener('scroll', () => {
   document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 80);
@@ -751,6 +1467,26 @@ sceneThumbs.forEach((thumb, i) => {
     }
   });
 });
+
+/* ── GALLERY LIGHTBOX ── */
+document.querySelectorAll('.g-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const src = item.dataset.src;
+    if (!src) return;
+    const lb  = document.getElementById('gLightbox');
+    const img = document.getElementById('gLbImg');
+    img.src = src;
+    lb.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  });
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const lb = document.getElementById('gLightbox');
+    if (lb) { lb.style.display='none'; document.body.style.overflow=''; }
+  }
+});
+
 </script>
 </body>
 </html>
