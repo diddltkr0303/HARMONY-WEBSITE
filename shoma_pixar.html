@@ -137,7 +137,7 @@ a { text-decoration: none; color: inherit; }
 ═══════════════════════════════════ */
 #synopsis {
   background: var(--white);
-  padding: 120px 24px 100px;
+  padding: 160px 24px 140px;
   text-align: center;
 }
 .synopsis-inner {
@@ -160,7 +160,7 @@ a { text-decoration: none; color: inherit; }
 ═══════════════════════════════════ */
 #scenes {
   background: var(--white);
-  padding: 0 0 120px;
+  padding: 0 0 160px;
 }
 .scenes-label {
   text-align: center; padding: 0 24px 48px;
@@ -251,7 +251,8 @@ a { text-decoration: none; color: inherit; }
 ═══════════════════════════════════ */
 #characters {
   background: var(--white);
-  padding: 80px 56px 140px;
+  padding: 180px 56px 240px;
+  min-height: 100vh;
 }
 .char-card {
   display: grid;
@@ -383,8 +384,8 @@ a { text-decoration: none; color: inherit; }
   padding-right: 56px;
 }
 #world .world-list {
-  padding-top: 100px;
-  padding-bottom: 140px;
+  padding-top: 140px;
+  padding-bottom: 180px;
 }
 .world-inner {
   max-width: 1100px; margin: 0 auto;
@@ -433,7 +434,7 @@ a { text-decoration: none; color: inherit; }
 ═══════════════════════════════════ */
 #about {
   background: var(--white);
-  padding: 120px 56px;
+  padding: 160px 56px;
   text-align: center;
 }
 .about-inner { max-width: 600px; margin: 0 auto; }
@@ -478,8 +479,8 @@ footer p {
    SCROLL REVEAL
 ═══════════════════════════════════ */
 .reveal {
-  opacity: 0; transform: translateY(28px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  opacity: 0; transform: translateY(36px);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1);
 }
 .reveal.up { opacity: 1; transform: none; }
 
@@ -507,7 +508,7 @@ footer p {
 /* ── FROZEN-STYLE CHARACTERS ── */
 #characters {
   background: #fff;
-  padding: 80px 24px 100px;
+  padding: 140px 24px 180px;
 }
 #characters .section-eyebrow { color: var(--amber-dim); }
 #characters .section-title   { color: var(--navy); line-height: 1; }
@@ -608,7 +609,7 @@ footer p {
 /* 세계 아이템 리스트 */
 .world-list {
   max-width: 1200px; margin: 0 auto;
-  padding: 100px 80px 140px;
+  padding: 140px 80px 180px;
   display: flex; flex-direction: column; gap: 100px;
 }
 .world-item {
@@ -851,7 +852,7 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 
 .team-text {
   display: flex; flex-direction: column; justify-content: center;
-  padding: 80px 40px 80px 25%;
+  padding: 120px 40px 120px 25%;
 }
 .team-uniforms {
   display: flex; gap: 14px; margin-top: 32px;
@@ -884,7 +885,7 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 #timeline { background: var(--off-white, #F7F5F2); }
 .timeline-list {
   max-width: 700px; margin: 0 auto;
-  padding: 80px 40px 120px;
+  padding: 120px 40px 160px;
   position: relative;
 }
 .timeline-list::before {
@@ -1220,13 +1221,62 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
   .gallery-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
+
+/* 갤러리 숨 고르는 구간 */
+.gallery-break {
+  grid-column: span 3;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-break::after {
+  content: '· · ·';
+  font-size: 11px;
+  letter-spacing: 10px;
+  color: rgba(255,255,255,0.18);
+  font-family: 'Inter', sans-serif;
+}
+
+
+/* 섹션 진입 fade-in */
+section[id] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.22,1,0.36,1);
+}
+section[id].section-visible {
+  opacity: 1;
+  transform: none;
+}
+/* 제목 구간(.shd 포함 섹션)은 항상 즉시 표시 */
+#gallery,
+#world,
+#teams,
+#connection,
+#timeline { opacity: 1 !important; transform: none !important; }
+/* crew-header도 항상 표시 */
+#crew-header { opacity: 1 !important; transform: none !important; }
+
+
+/* 팀 카드 페이드인 — 더 늦게 발동 */
+.team-fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s cubic-bezier(0.22,1,0.36,1);
+}
+.team-fade.team-visible {
+  opacity: 1;
+  transform: none;
+}
+
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="nav-logo" href="#">PROJECT:SHOMA</a>
+  <a class="nav-logo" href="#" onclick="event.preventDefault(); window.scrollTo(0,0); location.reload();">PROJECT:SHOMA</a>
   <ul class="nav-links">
     <li><a href="#scenes">Scenes</a></li>
     <li><a href="#characters">Characters</a></li>
@@ -1511,7 +1561,7 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
   <div class="teams-container">
 
     <!-- TEAM STRAY -->
-    <div class="team-card team-stray reveal">
+    <div class="team-card team-stray team-fade">
       <div class="team-text">
         <span class="team-label">Rattown-based</span>
         <h3 class="team-name">TEAM<br>STRAY</h3>
@@ -1530,7 +1580,7 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
     <div class="team-divider"></div>
 
     <!-- TEAM ASTERA -->
-    <div class="team-card team-astera reveal">
+    <div class="team-card team-astera team-fade">
       <div class="team-text">
         <span class="team-label">Glory Bay-based</span>
         <h3 class="team-name">TEAM<br>ASTERA</h3>
@@ -1594,76 +1644,94 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 
   <div class="gallery-grid">
 
-    <!-- 01: 대형 (2열×2행) -->
-    <div class="g-item g-item--large" data-src="images/gallery1.png">
+    <!-- ── GROUP 1: 대형 왼쪽 + 오른쪽 2개 스택 ── -->
+    <div class="g-item g-item--large">
       <div class="g-img" id="g1" style="background-image:url('images/gallery1.png');"></div>
       <div class="g-hover"><span class="g-num">01</span></div>
     </div>
-
-    <!-- 02 -->
-    <div class="g-item" data-src="images/gallery2.png">
+    <div class="g-item">
       <div class="g-img" id="g2" style="background-image:url('images/gallery2.png');"></div>
       <div class="g-hover"><span class="g-num">02</span></div>
     </div>
-
-    <!-- 03 -->
-    <div class="g-item" data-src="images/gallery3.png">
+    <div class="g-item">
       <div class="g-img" id="g3" style="background-image:url('images/gallery8.png');"></div>
       <div class="g-hover"><span class="g-num">03</span></div>
     </div>
 
-    <!-- 04 -->
-    <div class="g-item" data-src="images/gallery4.png">
+    <div class="gallery-break"></div>
+
+    <!-- ── GROUP 2: 3등분 균등 ── -->
+    <div class="g-item">
       <div class="g-img" id="g4" style="background-image:url('images/gallery3.png');"></div>
       <div class="g-hover"><span class="g-num">04</span></div>
     </div>
-
-    <!-- 05 -->
-    <div class="g-item" data-src="images/gallery5.png">
+    <div class="g-item">
       <div class="g-img" id="g5" style="background-image:url('images/gallery5.png');"></div>
       <div class="g-hover"><span class="g-num">05</span></div>
     </div>
-
-    <!-- 06: 와이드 (2열) -->
-    <div class="g-item g-item--wide" data-src="images/gallery6.png">
-      <div class="g-img" id="g6" style="background-image:url('images/gallery9.png');"></div>
+    <div class="g-item">
+      <div class="g-img" id="g6" style=""></div>
       <div class="g-hover"><span class="g-num">06</span></div>
     </div>
 
-    <!-- 07 -->
-    <div class="g-item" data-src="images/gallery7.png">
-      <div class="g-img" id="g7" style="background-image:url('images/gallery7.png');"></div>
+    <div class="gallery-break"></div>
+
+    <!-- ── GROUP 3: 풀와이드 + 아래 2개 ── -->
+    <div class="g-item g-item--full">
+      <div class="g-img" id="g7" style="background-image:url('images/gallery6.png');"></div>
       <div class="g-hover"><span class="g-num">07</span></div>
     </div>
-
-    <!-- 08: 오른쪽 대형 (1열×2행) -->
-    <div class="g-item g-item--tall" data-src="images/gallery8.png">
+    <div class="g-item">
       <div class="g-img" id="g8" style="background-image:url('images/gallery4.png');"></div>
       <div class="g-hover"><span class="g-num">08</span></div>
     </div>
-
-    <!-- 09 -->
-    <div class="g-item" data-src="images/gallery9.png">
-      <div class="g-img" id="g9" style="background-image:url('images/gallery.png');"></div>
+    <div class="g-item g-item--wide">
+      <div class="g-img" id="g9" style="background-image:url('images/gallery11.png');"></div>
       <div class="g-hover"><span class="g-num">09</span></div>
     </div>
 
-    <!-- 10 -->
-    <div class="g-item" data-src="images/gallery10.png">
+    <div class="gallery-break"></div>
+
+    <!-- ── GROUP 4: 일반 2개 + 세로대형 오른쪽 ── -->
+    <div class="g-item">
       <div class="g-img" id="g10" style="background-image:url('images/gallery10.png');"></div>
       <div class="g-hover"><span class="g-num">10</span></div>
     </div>
-
-    <!-- 11: 풀와이드 (3열) -->
-    <div class="g-item g-item--full" data-src="images/gallery11.png">
-      <div class="g-img" id="g11" style="background-image:url('images/gallery6.png');"></div>
+    <div class="g-item">
+      <div class="g-img" id="g11" style="background-image:url('images/gallery13.png');"></div>
       <div class="g-hover"><span class="g-num">11</span></div>
     </div>
-
-    <!-- 12 -->
-    <div class="g-item" data-src="images/gallery12.png">
+    <div class="g-item g-item--tall">
       <div class="g-img" id="g12" style="background-image:url('images/gallery12.png');"></div>
       <div class="g-hover"><span class="g-num">12</span></div>
+    </div>
+    <div class="g-item">
+      <div class="g-img" id="g13" style="background-image:url('images/gallery9.png');"></div>
+      <div class="g-hover"><span class="g-num">13</span></div>
+    </div>
+    <div class="g-item">
+      <div class="g-img" id="g14" style="background-image:url('images/gallery14.png');"></div>
+      <div class="g-hover"><span class="g-num">14</span></div>
+    </div>
+
+    <div class="gallery-break"></div>
+
+    <!-- ── GROUP 5: 와이드 + 마무리 ── -->
+    <div class="g-item g-item--wide">
+      <div class="g-img" id="g15" style="background-image:url('images/gallery15.png');"></div>
+      <div class="g-hover"><span class="g-num">15</span></div>
+    </div>
+    <div class="g-item">
+      <div class="g-img" id="g16" style="background-image:url('images/gallery16.png');"></div>
+      <div class="g-hover"><span class="g-num">16</span></div>
+    </div>
+    <div class="g-item">
+      <div class="g-img" id="g17" style="background-image:url('images/gallery7.png');"></div>
+      <div class="g-hover"><span class="g-num">17</span></div>
+    </div>
+    <div class="g-item g-item--full">
+      <div class="g-img" id="g18" style="background-image:url('images/gallery18.png');"></div>
+      <div class="g-hover"><span class="g-num">18</span></div>
     </div>
 
   </div>
@@ -1731,9 +1799,11 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
       nameTxt.textContent = d.name;
       descTxt.textContent = (_lang === 'en' && d.descEn) ? d.descEn : d.desc;
       detail.classList.add('visible');
-      detail.scrollIntoView({ behavior:'smooth', block:'nearest' });
     });
   });
+
+  // 페이지 로드 시 첫 번째 캐릭터 자동 표시
+  if (items.length > 0) items[0].click();
 })();
 
 /* ── NAV ── */
@@ -1773,7 +1843,12 @@ sceneThumbs.forEach((thumb, i) => {
 /* ── GALLERY LIGHTBOX ── */
 document.querySelectorAll('.g-item').forEach(item => {
   item.addEventListener('click', () => {
-    const src = item.dataset.src;
+    // g-img의 background-image를 직접 읽어서 라이트박스에 표시
+    const gImg = item.querySelector('.g-img');
+    const bgStyle = gImg ? window.getComputedStyle(gImg).backgroundImage : '';
+    // "url('...')" 형태에서 경로만 추출
+    const match = bgStyle.match(/url\(["']?([^"')]+)["']?\)/);
+    const src = match ? match[1] : (item.dataset.src || '');
     if (!src) return;
     const lb  = document.getElementById('gLightbox');
     const img = document.getElementById('gLbImg');
@@ -1838,6 +1913,51 @@ function toggleMobileMenu() {
 document.getElementById('mobileMenu')?.addEventListener('click', function(e) {
   if (e.target === this) toggleMobileMenu();
 });
+
+
+/* ── SECTION FADE-IN ── */
+(function() {
+  // 제목(.shd) 포함 섹션과 hero는 페이드인 제외
+  const NO_FADE = new Set(['hero','world','teams','connection','timeline','gallery']);
+
+  const sectionObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('section-visible');
+        sectionObs.unobserve(e.target);
+      }
+    });
+  }, {
+    // rootMargin: 뷰포트 하단 기준 -15% 안으로 들어와야 발동 → 너무 이른 트리거 방지
+    rootMargin: '0px 0px -15% 0px',
+    threshold: 0
+  });
+
+  document.querySelectorAll('section[id]').forEach(sec => {
+    if (NO_FADE.has(sec.id)) {
+      sec.classList.add('section-visible');
+    } else {
+      sectionObs.observe(sec);
+    }
+  });
+})();
+
+
+/* ── TEAM CARD FADE-IN (늦게 발동) ── */
+(function() {
+  const teamObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('team-visible');
+        teamObs.unobserve(e.target);
+      }
+    });
+  }, {
+    rootMargin: '0px 0px -30% 0px',
+    threshold: 0
+  });
+  document.querySelectorAll('.team-fade').forEach(el => teamObs.observe(el));
+})();
 
 </script>
 </body>
