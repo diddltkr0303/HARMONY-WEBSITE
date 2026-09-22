@@ -161,6 +161,7 @@ a { text-decoration: none; color: inherit; }
 #scenes {
   background: var(--white);
   padding: 0 0 240px;
+  margin-top: 0;
 }
 .scenes-label {
   text-align: center; padding: 0 24px 48px;
@@ -610,7 +611,7 @@ footer p {
 .world-list {
   max-width: 1200px; margin: 0 auto;
   padding: 220px 80px 260px;
-  display: flex; flex-direction: column; gap: 140px;
+  display: flex; flex-direction: column; gap: 160px;
 }
 .world-item {
   display: grid;
@@ -1270,14 +1271,165 @@ section[id].section-visible {
   transform: none;
 }
 
+
+/* ══════════════════════════════════════
+   FILMS & WORKS
+══════════════════════════════════════ */
+#films {
+  background: var(--white);
+  padding: 160px 80px 80px;
+}
+.films-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.films-inner .films-title {
+  display: block; text-align: left;
+  font-family: var(--display); font-weight: 900;
+  font-size: clamp(28px, 4vw, 44px);
+  letter-spacing: 0; text-transform: none;
+  color: var(--ink); line-height: 1;
+  margin-bottom: 40px;
+}
+.films-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+}
+.film-card {
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+  transition: opacity 0.2s;
+}
+.film-card:hover { opacity: 0.88; }
+.film-thumb {
+  aspect-ratio: 16/9;
+  background-size: cover;
+  background-position: center;
+  background-color: #C0C8D0;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+/* 플레이 버튼 — 픽사 스타일: 우하단 작은 원형 */
+.film-play-btn {
+  position: absolute;
+  bottom: 14px; right: 14px;
+  display: flex; align-items: center; justify-content: center;
+  background: none;
+  transition: transform 0.2s;
+}
+.film-card:hover .film-play-btn { transform: scale(1.08); }
+.film-play-icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.88);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+}
+.film-play-icon svg { margin-left: 3px; }
+.film-play-icon svg path { fill: var(--navy); }
+
+/* 영상 없는 카드 */
+.film-card.no-video { cursor: default; }
+.film-card.no-video:hover { opacity: 1; }
+.film-card.no-video .film-play-icon { opacity: 0.35; }
+.film-coming-soon {
+  position: absolute; top: 12px; right: 12px;
+  font-family: var(--display); font-size: 10px;
+  font-weight: 300; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  background: rgba(0,0,0,0.45); backdrop-filter: blur(8px);
+  padding: 4px 10px; border-radius: 2px;
+}
+
+/* 카드 정보 — 픽사 스타일: 썸네일 아래 흰 배경 */
+.film-info {
+  padding: 14px 4px 0;
+  background: transparent;
+}
+.film-type {
+  font-family: var(--display); font-size: 10px;
+  font-weight: 300; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--ink-mid, #5A5A5A); display: block; margin-bottom: 4px;
+}
+.film-title {
+  font-family: var(--display); font-weight: 400;
+  font-size: clamp(15px, 1.5vw, 18px);
+  color: var(--ink); line-height: 1.3; margin-bottom: 4px;
+}
+.film-meta {
+  font-family: var(--display); font-size: 11px;
+  font-weight: 300; letter-spacing: 0.5px;
+  color: var(--ink-light, #9A9A9A);
+}
+
+/* ── YouTube Modal ── */
+.yt-modal {
+  display: none;
+  position: fixed; inset: 0;
+  z-index: 9100;
+  background: rgba(0,0,0,0);
+  align-items: center; justify-content: center;
+  transition: background 0.3s ease;
+}
+.yt-modal.open {
+  display: flex;
+  background: rgba(0,0,0,0.88);
+}
+.yt-modal-inner {
+  position: relative;
+  width: min(90vw, 1000px);
+  opacity: 0;
+  transform: scale(0.94);
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22,1,0.36,1);
+}
+.yt-modal.open .yt-modal-inner {
+  opacity: 1;
+  transform: scale(1);
+}
+.yt-iframe-wrap {
+  position: relative;
+  width: 100%; padding-bottom: 56.25%;
+  background: #000;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.yt-iframe-wrap iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+.yt-close {
+  position: absolute;
+  top: -44px; right: 0;
+  background: none; border: none;
+  cursor: pointer;
+  font-family: var(--display); font-size: 28px;
+  font-weight: 200; color: rgba(255,255,255,0.6);
+  line-height: 1; padding: 4px 8px;
+  transition: color 0.2s;
+}
+.yt-close:hover { color: #fff; }
+
+@media (max-width: 768px) {
+  #films { padding: 100px 20px 120px; }
+  .films-grid { grid-template-columns: 1fr; gap: 24px; }
+  .film-play-icon { width: 52px; height: 52px; }
+  .yt-modal-inner { width: 95vw; }
+  .yt-close { top: -40px; }
+}
+
 </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav id="nav">
-  <a class="nav-logo" href="#" onclick="event.preventDefault(); window.scrollTo(0,0); location.reload();">PROJECT:SHOMA</a>
+  <a class="nav-logo" href="#" onclick="event.preventDefault(); window.location.href = window.location.pathname;">PROJECT:SHOMA</a>
   <ul class="nav-links">
+    <li><a href="#films">Films</a></li>
     <li><a href="#scenes">Scenes</a></li>
     <li><a href="#characters">Characters</a></li>
     <li><a href="#world">World</a></li>
@@ -1300,6 +1452,7 @@ section[id].section-visible {
 <div id="mobileMenu" class="mobile-menu">
   <button class="mobile-menu-close" onclick="toggleMobileMenu()">×</button>
   <nav class="mobile-menu-nav">
+    <a href="#films"      onclick="toggleMobileMenu()">Films</a>
     <a href="#scenes"     onclick="toggleMobileMenu()">Scenes</a>
     <a href="#characters" onclick="toggleMobileMenu()">Characters</a>
     <a href="#world"      onclick="toggleMobileMenu()">World</a>
@@ -1344,12 +1497,65 @@ section[id].section-visible {
   </div>
 </section>
 
+<!-- FILMS & WORKS -->
+<section id="films">
+  <div class="films-inner">
+    <h2 class="films-title reveal">Films & Works</h2>
+
+    <div class="films-grid">
+
+      <!-- 1. PROJECT: SHOMA -->
+      <div class="film-card reveal" data-ytid="cXehxsA6Jmw" onclick="openYtModal(this)">
+        <div class="film-thumb" style="background-image:url('https://img.youtube.com/vi/cXehxsA6Jmw/hqdefault.jpg'); background-size:cover; background-position:center;">
+          <div class="film-play-btn">
+            <div class="film-play-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M6 4L16 10L6 16V4Z" fill="white"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="film-info">
+          <span class="film-type">Short Animation</span>
+          <p class="film-title">PROJECT: SHOMA</p>
+          <span class="film-meta">4:11</span>
+        </div>
+      </div>
+
+      <!-- 2. 3D ANAMORPHIC MEDIA ART (영상 없음 → 나중에 data-ytid 추가) -->
+      <div class="film-card no-video reveal" data-ytid="" onclick="openYtModal(this)">
+        <div class="film-thumb" style="background-image:url('images/anamorphic_thumb.png');">
+          <div class="film-play-btn">
+            <div class="film-play-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M6 4L16 10L6 16V4Z" fill="white"/>
+              </svg>
+            </div>
+          </div>
+          <span class="film-coming-soon">Video Coming Soon</span>
+        </div>
+        <div class="film-info">
+          <span class="film-type">3D Anamorphic Video</span>
+          <p class="film-title">3D Anamorphic<br>Media Art</p>
+          <span class="film-meta">0:53 · Exhibited at Seoullo Media Canvas, Seoul</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- YouTube Modal -->
+<div id="ytModal" class="yt-modal" onclick="closeYtModal(event)">
+  <div class="yt-modal-inner">
+    <button class="yt-close" onclick="closeYtModal(null, true)">×</button>
+    <div class="yt-iframe-wrap" id="ytIframeWrap"></div>
+  </div>
+</div>
+
 <!-- SCENES -->
 <section id="scenes">
-  <div class="scenes-label reveal">
-    <span class="section-eyebrow">The Story in Frames</span>
-    <h2 class="section-title">Moments</h2>
-  </div>
+
   <div class="scenes-main" id="scenesMain" style="background-image:url('images/모멘트페이지2.png');"></div>
     <!-- 교체: style="background-image:url('images/scene1.png');" -->
   </div>
@@ -1474,7 +1680,7 @@ section[id].section-visible {
           <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/모멘트페이지1.png');"></div>
           <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/글로리베이미니이미지2.png');"></div>
           <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/글로리베이미니이미지.jpg');"></div>
-          <div class="world-item-thumb" id="glorybayT4"></div>
+          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/글로리베이미니이미지3.png');"></div>
         </div>
       </div>
     </div>
@@ -1486,10 +1692,10 @@ section[id].section-visible {
         <p class="world-item-desc i18n" data-ko="개발이 늦고 기회가 부족한 낙후된 주거지역.<br>쇼마가 살아가는 곳이자, STRAY의 이야기가 시작되는 곳이다." data-en="A neglected, underdeveloped neighborhood with few opportunities.<br>The place Shoma calls home — and where the story of STRAY begins.">개발이 늦고 기회가 부족한 낙후된 주거지역.<br>쇼마가 살아가는 곳이자, STRAY의 이야기가 시작되는 곳이다.</p>
       
         <div class="world-item-thumbs">
-          <div class="world-item-thumb" id="rattownT1"></div>
-          <div class="world-item-thumb" id="rattownT2"></div>
-          <div class="world-item-thumb" id="rattownT3"></div>
-          <div class="world-item-thumb" id="rattownT4"></div>
+          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/랫타운미니이미지2.png');"></div>
+          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/랫타운미니이미지3.png');"></div>
+          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/랫타운미니이미지.png');"></div>
+          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/랫타운미니이미지4.png');"></div>
         </div>
       </div>
     </div>
@@ -1503,30 +1709,14 @@ section[id].section-visible {
         <div class="world-item-thumbs">
           <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/스트라토스컵미니이미지.png');"></div>
           <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/스트라토스컵미니이미지2.png');"></div>
-          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/흠.png');"></div>
-          <div class="world-item-thumb" id="stratosT4"></div>
+          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/스트라토스컵미니이미지4.png');"></div>
+          <div class="world-item-thumb" id="glorybayT1" style="background-image:url('images/스트라토스컵미니이미지3.png');"></div>
         </div>
       </div>
     </div>
 
-    <div class="world-item reveal">
-      <div class="world-item-portrait" id="wpGlorybay" style="background-image: url('images/레드몬트고교프로필.png');"></div>
-      <div class="world-item-info">
-        <h3 class="world-item-name">Redmont High School</h3>
-        <p class="world-item-desc i18n" data-ko="랫타운과 인근 지역에 위치한 쇼마의 고등학교. 학생과 교사 모두가 꿈도 희망도 없이 삶을 연명만 하는 곳. 이런 무기력한 모습에 질린 쇼마는 학교생활 속에서도 연구를 멈추지 않고 자신의 기술을 발전시켜 나간다." data-en="Shoma's high school in the Rattown area. A place where students and teachers alike have given up on dreams. Tired of the hopelessness, Shoma never stops his research — even in class.">랫타운과 인근 지역에 위치한 쇼마의 고등학교. 학생과 교사 모두가 꿈도 희망도 없이 삶을 연명만 하는 곳. 이런 무기력한 모습에 질린 쇼마는 학교생활 속에서도 연구를 멈추지 않고 자신의 기술을 발전시켜 나간다.</p>
-      
-        <div class="world-item-thumbs">
-          <div class="world-item-thumb" id="redmontT1"></div>
-          <div class="world-item-thumb" id="redmontT2"></div>
-          <div class="world-item-thumb" id="redmontT3"></div>
-          <div class="world-item-thumb" id="redmontT4"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="world-item reveal">
-      <div class="world-item-portrait" id="wpGlorybay" style="background-image: url('images/크레스턴대학프로필.png');"></div>
-      <div class="world-item-info">
+    <div class="world-item reveal" style="grid-template-columns: 1fr 360px;">
+      <div class="world-item-info" style="order:1;">
         <h3 class="world-item-name">Creston University</h3>
         <p class="world-item-desc i18n" data-ko="글로리베이에 위치한 명문 공과대학. 첨단 공학과 기술 연구로 이름난 곳이지만, 학생들에게 정해진 길만을 요구하지 않는다. 자신의 아이디어를 직접 만들고 실패할 수 있는 자유로운 연구 문화가 이곳의 특징이다." data-en="A prestigious engineering university in Glory Bay. Known for advanced research and technology, but it doesn't demand students follow a fixed path. The freedom to build your own ideas — and to fail — defines its culture.">글로리베이에 위치한 명문 공과대학. 첨단 공학과 기술 연구로 이름난 곳이지만, 학생들에게 정해진 길만을 요구하지 않는다. 자신의 아이디어를 직접 만들고 실패할 수 있는 자유로운 연구 문화가 이곳의 특징이다.</p>
       
@@ -1537,6 +1727,7 @@ section[id].section-visible {
           <div class="world-item-thumb" id="crestonT4"></div>
         </div>
       </div>
+      <div class="world-item-portrait" id="wpCreston" style="background-image: url('images/크레스턴대학프로필.png'); order:2;"></div>
     </div>
         
         
@@ -1718,7 +1909,7 @@ section[id].section-visible {
 
     <!-- ── GROUP 5: 와이드 + 마무리 ── -->
     <div class="g-item g-item--wide">
-      <div class="g-img" id="g15" style="background-image:url('images/gallery15.png');"></div>
+      <div class="g-img" id="g15" style="background-image:url('images/galleryzz.png');"></div>
       <div class="g-hover"><span class="g-num">15</span></div>
     </div>
     <div class="g-item">
@@ -1958,6 +2149,40 @@ document.getElementById('mobileMenu')?.addEventListener('click', function(e) {
   });
   document.querySelectorAll('.team-fade').forEach(el => teamObs.observe(el));
 })();
+
+
+/* ── YOUTUBE MODAL ── */
+function openYtModal(card) {
+  const ytid = card.dataset.ytid;
+  if (!ytid) return; // 영상 없는 카드는 무시
+  const modal = document.getElementById('ytModal');
+  const wrap  = document.getElementById('ytIframeWrap');
+  // iframe 생성
+  wrap.innerHTML = `<iframe
+    src="https://www.youtube.com/embed/${ytid}?autoplay=1&rel=0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>`;
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+  // transition을 위해 한 프레임 뒤에 클래스 추가
+  requestAnimationFrame(() => requestAnimationFrame(() => modal.classList.add('open')));
+}
+
+function closeYtModal(e, force) {
+  if (!force && e && e.target !== document.getElementById('ytModal')) return;
+  const modal = document.getElementById('ytModal');
+  const wrap  = document.getElementById('ytIframeWrap');
+  modal.classList.remove('open');
+  setTimeout(() => {
+    modal.style.display = 'none';
+    wrap.innerHTML = ''; // 영상 재생 중지
+    document.body.style.overflow = '';
+  }, 300);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeYtModal(null, true);
+});
 
 </script>
 </body>
