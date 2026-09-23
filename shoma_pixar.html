@@ -376,18 +376,10 @@ a { text-decoration: none; color: inherit; }
    WORLD — 오프화이트 배경
 ═══════════════════════════════════ */
 #world {
-  background: var(--off-white);
+  background: transparent;
   padding: 0;
 }
-#world .world-inner,
-#world .world-list {
-  padding-left: 56px;
-  padding-right: 56px;
-}
-#world .world-list {
-  padding-top: 180px;
-  padding-bottom: 220px;
-}
+/* world padding은 각 world-item에서 처리 */
 .world-inner {
   max-width: 1100px; margin: 0 auto;
 }
@@ -581,7 +573,7 @@ footer p {
 }
 
 /* ── PIXAR ELEMENTAL STYLE WORLD ── */
-#world { background: #fff; }
+#world { background: transparent; }
 
 /* 헤더 풀스크린 이미지 */
 .world-header {
@@ -609,17 +601,23 @@ footer p {
 
 /* 세계 아이템 리스트 */
 .world-list {
-  max-width: 1200px; margin: 0 auto;
-  padding: 220px 80px 260px;
-  display: flex; flex-direction: column; gap: 160px;
+  max-width: none;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex; flex-direction: column; gap: 0;
 }
 .world-item {
   display: grid;
   grid-template-columns: 360px 1fr;
   gap: 72px; align-items: center;
+  width: 100%;
+  padding: 140px max(5vw, calc(50vw - 550px));
+  background: var(--white);
 }
 .world-item:nth-child(even) {
   grid-template-columns: 1fr 360px;
+  background: var(--off-white);
 }
 .world-item:nth-child(even) .world-item-portrait { order: 2; }
 .world-item:nth-child(even) .world-item-info     { order: 1; }
@@ -880,7 +878,7 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 }
 
 /* ═══════════════════ THE CONNECTION ════════════════════════ */
-#connection { background: #fff; }
+#connection { background: transparent; }
 
 /* ═══════════════════ TIMELINE ══════════════════════════════ */
 #timeline { background: var(--off-white, #F7F5F2); }
@@ -967,6 +965,10 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 #gallery .shd::after {
   display: none;
 }
+/* World 마지막(아이보리) 다음 Teams, Connection 마지막(아이보리) 다음 Gallery — 곡선 아이보리로 */
+#teams .shd::before,
+#gallery .shd::before { background: var(--off-white); }
+
 /* 갤러리 shd 하단: 배경이미지 → 완전한 네이비로 페이드 */
 #gallery .shd-overlay {
   background: linear-gradient(
@@ -1163,7 +1165,7 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
   /* WORLD */
   .world-list { padding: 60px 20px 80px; gap: 60px; }
   .world-item,
-  .world-item:nth-child(even) { grid-template-columns: 1fr; gap: 28px; }
+  .world-item:nth-child(even) { grid-template-columns: 1fr; gap: 28px; padding: 60px 24px; }
   .world-item:nth-child(even) .world-item-portrait,
   .world-item:nth-child(even) .world-item-info { order: unset; }
   .world-item-portrait { width: 200px; height: 200px; margin: 0 auto; }
@@ -1276,8 +1278,8 @@ section[id].section-visible {
    FILMS & WORKS
 ══════════════════════════════════════ */
 #films {
-  background: var(--white);
-  padding: 160px 80px 80px;
+  background: var(--off-white);
+  padding: 160px 80px 180px;
 }
 .films-inner {
   max-width: 1100px;
@@ -1285,9 +1287,9 @@ section[id].section-visible {
 }
 .films-inner .films-title {
   display: block; text-align: left;
-  font-family: var(--display); font-weight: 900;
+  font-family: 'Inter', sans-serif; font-weight: 300;
   font-size: clamp(28px, 4vw, 44px);
-  letter-spacing: 0; text-transform: none;
+  letter-spacing: 1px; text-transform: none;
   color: var(--ink); line-height: 1;
   margin-bottom: 40px;
 }
@@ -1313,6 +1315,7 @@ section[id].section-visible {
   overflow: hidden;
 }
 /* 플레이 버튼 — 픽사 스타일: 우하단 작은 원형 */
+/* 재생버튼 — 우하단, 아웃라인 원형 */
 .film-play-btn {
   position: absolute;
   bottom: 14px; right: 14px;
@@ -1320,16 +1323,23 @@ section[id].section-visible {
   background: none;
   transition: transform 0.2s;
 }
-.film-card:hover .film-play-btn { transform: scale(1.08); }
+.film-card:hover .film-play-btn { transform: scale(1.1); }
 .film-play-icon {
-  width: 44px; height: 44px;
+  width: 48px; height: 48px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.88);
+  background: transparent;
+  border: 2px solid rgba(255,255,255,0.85);
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
+  transition: border-color 0.2s ease, background 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
 }
-.film-play-icon svg { margin-left: 3px; }
-.film-play-icon svg path { fill: var(--navy); }
+.film-card:hover .film-play-icon {
+  background: var(--amber);
+  border-color: var(--amber);
+}
+/* 삼각형: 시각 보정 — 살짝 왼쪽으로 이동해서 눈으로 봤을때 중앙처럼 보이게 */
+.film-play-icon svg { margin-left: 2px; margin-top: 0; }
+.film-play-icon svg path { fill: rgba(255,255,255,0.9); }
 
 /* 영상 없는 카드 */
 .film-card.no-video { cursor: default; }
@@ -1380,7 +1390,8 @@ section[id].section-visible {
 }
 .yt-modal-inner {
   position: relative;
-  width: min(90vw, 1000px);
+  width: 92vw;
+  max-width: calc(90vh * 16 / 9); /* 세로 기준 16:9 최대폭 */
   opacity: 0;
   transform: scale(0.94);
   transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.22,1,0.36,1);
@@ -1509,7 +1520,7 @@ section[id].section-visible {
         <div class="film-thumb" style="background-image:url('https://img.youtube.com/vi/cXehxsA6Jmw/hqdefault.jpg'); background-size:cover; background-position:center;">
           <div class="film-play-btn">
             <div class="film-play-icon">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <svg width="28" height="28" viewBox="0 0 20 20" fill="none">
                 <path d="M6 4L16 10L6 16V4Z" fill="white"/>
               </svg>
             </div>
@@ -1523,19 +1534,18 @@ section[id].section-visible {
       </div>
 
       <!-- 2. 3D ANAMORPHIC MEDIA ART (영상 없음 → 나중에 data-ytid 추가) -->
-      <div class="film-card no-video reveal" data-ytid="" onclick="openYtModal(this)">
-        <div class="film-thumb" style="background-image:url('images/anamorphic_thumb.png');">
+      <div class="film-card reveal" data-ytid="SWB58odpKI8" onclick="openYtModal(this)">
+        <div class="film-thumb" style="background-image:url('https://img.youtube.com/vi/SWB58odpKI8/hqdefault.jpg'); background-size:cover; background-position:center;">
           <div class="film-play-btn">
             <div class="film-play-icon">
-              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <svg width="28" height="28" viewBox="0 0 20 20" fill="none">
                 <path d="M6 4L16 10L6 16V4Z" fill="white"/>
               </svg>
             </div>
           </div>
-          <span class="film-coming-soon">Video Coming Soon</span>
         </div>
         <div class="film-info">
-          <span class="film-type">3D Anamorphic Video</span>
+          <span class="film-type">3D Anamorphic Media Art</span>
           <p class="film-title">BEYOND THE WINDOW</p>
           <span class="film-meta">0:53 · Exhibited at Seoullo Media Canvas, Seoul</span>
         </div>
@@ -2109,7 +2119,7 @@ document.getElementById('mobileMenu')?.addEventListener('click', function(e) {
 /* ── SECTION FADE-IN ── */
 (function() {
   // 제목(.shd) 포함 섹션과 hero는 페이드인 제외
-  const NO_FADE = new Set(['hero','world','teams','connection','timeline','gallery']);
+  const NO_FADE = new Set(['hero','world','teams','connection','timeline','gallery','scenes']);
 
   const sectionObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
