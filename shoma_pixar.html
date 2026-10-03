@@ -1725,26 +1725,6 @@ section[id].section-visible {
       </div>
     </div>
 
-    <div class="world-item reveal" style="grid-template-columns: 1fr 360px;">
-      <div class="world-item-info" style="order:1;">
-        <h3 class="world-item-name">Creston University</h3>
-        <p class="world-item-desc i18n" data-ko="글로리베이에 위치한 명문 공과대학. 첨단 공학과 기술 연구로 이름난 곳이지만, 학생들에게 정해진 길만을 요구하지 않는다. 자신의 아이디어를 직접 만들고 실패할 수 있는 자유로운 연구 문화가 이곳의 특징이다." data-en="A prestigious engineering university in Glory Bay. Known for advanced research and technology, but it doesn't demand students follow a fixed path. The freedom to build your own ideas — and to fail — defines its culture.">글로리베이에 위치한 명문 공과대학. 첨단 공학과 기술 연구로 이름난 곳이지만, 학생들에게 정해진 길만을 요구하지 않는다. 자신의 아이디어를 직접 만들고 실패할 수 있는 자유로운 연구 문화가 이곳의 특징이다.</p>
-      
-        <div class="world-item-thumbs">
-          <div class="world-item-thumb" id="crestonT1"></div>
-          <div class="world-item-thumb" id="crestonT2"></div>
-          <div class="world-item-thumb" id="crestonT3"></div>
-          <div class="world-item-thumb" id="crestonT4"></div>
-        </div>
-      </div>
-      <div class="world-item-portrait" id="wpCreston" style="background-image: url('images/크레스턴대학프로필.png'); order:2;"></div>
-    </div>
-        
-        
-        
-        
-        
-
   </div>
 
 </section>
@@ -2221,10 +2201,14 @@ document.addEventListener('keydown', e => {
     border-bottom: 1px solid rgba(255,255,255,0.06);
   ">
     <button onclick="closeMaking()" style="
-      font-size: 11px; font-weight: 300; letter-spacing: 0.12em;
-      color: rgba(255,255,255,0.5); background: none; border: none;
-      font-family: 'Inter', sans-serif; cursor: pointer;
-      display: flex; align-items: center; gap: 8px;
+      font-family: var(--display); font-size: 13px; font-weight: 400;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      padding: 14px 36px;
+      color: rgba(255,255,255,0.5);
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: inline-flex; align-items: center; gap: 10px;
       transition: color 0.2s;
     " onmouseover="this.style.color='rgba(255,255,255,0.95)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">← PROJECT:SHOMA</button>
     <span style="
@@ -2246,269 +2230,372 @@ document.addEventListener('keydown', e => {
 
   <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:0 32px;">
 
-  <!-- 01. THE BEGINNING -->
-  <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
-    <p class="mk-label">2025.04.03 ~ 06.18</p>
-    <h2 class="mk-heading">01. The Beginning</h2>
-    <p class="mk-desc">군 전역 후 Coloso 3D 캐릭터 강의를 구매하고 Blender를 독학하면서 처음으로 두 개의 연습 캐릭터를 제작했다 — Bonnie와 Hyunwoo. 이 시점에는 아직 PROJECT: SHOMA도 HARMONY도 존재하지 않았다. 두 캐릭터를 만들면서 단순히 기술적으로 완성된 3D 캐릭터만으로는 부족하다는 것을 깨달았다. 캐릭터의 개성, 실루엣, 성격, 그리고 캐릭터가 존재할 세계를 함께 만들어야 한다는 방향을 잡게 되었다.</p>
-
-    <!-- 3열: Bonnie | Hyunwoo | Error+Rig 세로 그리드 -->
-    <div style="display:grid;grid-template-columns:1.15fr 1fr 1fr;gap:20px;align-items:start;">
-
-      <div class="mk-print" style="transform:rotate(-0.4deg)">
-        <div id="mk-begin-bonnie" class="mk-photo" data-label="Bonnie — Final Render"
-          style="aspect-ratio:3/4;background-image:url('images/making/보니현우.png')"></div>
-        <p class="mk-caption">Bonnie & Hyunwoo — First Practice Character</p>
-      </div>
-
-      <div class="mk-print" style="transform:rotate(0.5deg);margin-top:32px;">
-        <div id="mk-begin-hyunwoo" class="mk-photo" data-label="Hyunwoo — Final Render"
-          style="aspect-ratio:3/4;background-image:url('images/making/헤드스컬핑.png')"></div>
-        <p class="mk-caption">Practice Head Sculpts — 2025.04</p>
-      </div>
-
-      <!-- 우측: Error + Rig를 Bonnie 높이에 맞게 채움 -->
-      <div style="display:grid;grid-template-rows:1fr 1fr;gap:16px;align-self:stretch;margin-top:0;">
-        <div class="mk-print" style="transform:rotate(-0.7deg);height:100%;">
-          <div id="mk-begin-error" class="mk-photo" data-label="리깅 오류"
-            style="height:calc(100% - 42px);min-height:160px;background-image:url('images/making/전역사진.png')"></div>
-          <p class="mk-caption">I'M FREEEEEE!!!</p>
+  <!-- ─── 01. THE BEGINNING ─── -->
+  <div style="background:#07101f;">
+    <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
+      <!-- 상단: 텍스트 좌 + 전역사진 우 -->
+      <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-bottom:32px;">
+        <div>
+          <p style="font-size:clamp(60px,9vw,120px);font-weight:100;color:#D4922A;letter-spacing:-0.03em;line-height:0.85;margin-bottom:32px;">2025<br><span style="font-size:0.5em;opacity:0.75;">.04.03</span></p>
+          <p class="mk-label">군 생활과 새로운 시작</p>
+          <h2 class="mk-heading">01. The Beginning</h2>
+          <p class="mk-desc" style="margin-bottom:0;">군 생활 중에도 그림과 운동을 놓지 않았다. 전역만을 기다리던 나는 앞으로 무엇을 하며 살아갈지 진지하게 고민하기 시작했다.<br><br>2025년 4월 3일 전역 후, 예전부터 해보고 싶었던 스타일라이즈드 3D 캐릭터 제작을 독학하기 시작했다. 내가 원하는 것을 직접 만들어내겠다는 마음으로 새로운 도전을 시작했다.</p>
         </div>
-        <div class="mk-print" style="transform:rotate(0.8deg);height:100%;">
-          <div id="mk-begin-rig" class="mk-photo" data-label="리깅 작업 중"
-            style="height:calc(100% - 42px);min-height:160px;background-image:url('images/making/에러.jpg')"></div>
-          <p class="mk-caption">What the Fxxx...</p>
+        <div style="padding-top:16px;">
+          <div class="mk-print" style="transform:rotate(0.6deg);">
+            <div class="mk-photo" data-label="전역 사진" style="aspect-ratio:16/9;background-image:url('images/making/전역사진.png')"></div>
+            <p class="mk-caption">April 3, 2025 — Discharged</p>
+          </div>
         </div>
       </div>
-
-    </div>
-  </div>
-
-  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:0 32px;">
-
-  <!-- 02. BUILDING A WORLD -->
-  <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
-    <p class="mk-label">2025.06.25 ~ 07.14</p>
-    <h2 class="mk-heading">02. Building a World</h2>
-    <p class="mk-desc">캐릭터 하나를 독립적으로 만드는 것이 아니라 처음부터 하나의 세계 안에서 캐릭터를 만들기로 했다. 초기 아이디어는 도시의 화려한 모습을 동경하는 슬럼 출신의 천재 소년이었다. 이 아이디어를 바탕으로 첫 번째 쇼마의 컨셉이 만들어졌고, 이후 3D 캐릭터로 발전했다. 캐릭터를 만드는 동시에 세계관과 이야기도 함께 확장되었다.</p>
-    <div style="display:grid;grid-template-columns:1.2fr 1fr 0.75fr;gap:24px;align-items:start;margin-bottom:28px;">
-      <div class="mk-print" style="transform:rotate(0.5deg)">
-        <div id="mk-world-shoma-sketch" class="mk-photo" data-label="초기 쇼마 스케치" style="aspect-ratio:4/3;background-image:url('images/making/쇼마스케치.png')"></div>
-        <p class="mk-caption">First Shoma — Concept Sketch</p>
-      </div>
-      <div class="mk-print" style="transform:rotate(-0.7deg)">
-        <div id="mk-world-shoma-3d" class="mk-photo" data-label="초기 3D 쇼마" style="aspect-ratio:3/4;background-image:url('images/making/쇼마차렷.png')"></div>
-        <p class="mk-caption">First Shoma — 3D Model</p>
-      </div>
-      <div class="mk-print" style="transform:rotate(0.3deg);margin-top:48px;">
-        <div id="mk-world-early-story" class="mk-photo" data-label="초기 세계관 및 스토리 자료" style="aspect-ratio:4/3;background-image:url('images/making/쇼마버그.png')"></div>
-        <p class="mk-caption">The First Vision</p>
+      <!-- 하단: 3이미지 풀 너비 (세로 2장 + 가로 1장) -->
+      <div style="display:grid;grid-template-columns:0.8fr 0.8fr 1.3fr;gap:16px;align-items:end;">
+        <div class="mk-print" style="transform:rotate(-1.0deg);max-width:85%;">
+          <div class="mk-photo" data-label="군 생활 사진" style="aspect-ratio:3/4;background-image:url('images/making/군대그림2.png')"></div>
+          <p class="mk-caption">Drawing during military service</p>
+        </div>
+        <div class="mk-print" style="transform:rotate(0.5deg);margin-top:20px;max-width:85%;">
+          <div class="mk-photo" data-label="군 생활 사진" style="aspect-ratio:3/4;background-image:url('images/making/군대그림3.png')"></div>
+          <p class="mk-caption">Drawing during military service2</p>
+        </div>
+        <div class="mk-print" style="transform:rotate(-0.4deg)">
+          <div class="mk-photo" data-label="군 생활 드로잉" style="aspect-ratio:1/1;background-image:url('images/making/군대그림1.jpg')"></div>
+          <p class="mk-caption">Drawing during military service3</p>
+        </div>
       </div>
     </div>
   </div>
 
-  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:0 32px;">
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0;">
 
-  <!-- 03. WHEN THE SPARK IGNITES -->
-  <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
-    <p class="mk-label">2025.07.12 ~ 11.30</p>
-    <h2 class="mk-heading">03. When the Spark Ignites</h2>
-    <p class="mk-desc">이 세계를 실제 영상으로 구현하기 위해 장편 애니메이션의 한 장면처럼 보이는 첫 번째 3D 단편 애니메이션을 제작했다. 쇼마가 Stratos Cup 광고를 보고 자신의 미래에 대한 희망을 갖게 되는 장면. Shoma, Tino, 배경, 애니메이션, 라이팅, 최종 장면까지 약 5개월 동안 직접 제작했으며, 완성된 영상은 YouTube에 공개하고 학교 과제 전시에서도 선보였다. 머릿속으로만 존재하던 세계를 실제 3D 영상으로 구현한 첫 번째 경험이었다.</p>
-    <div style="display:grid;grid-template-columns:3fr 2fr;gap:24px;align-items:start;margin-bottom:28px;">
-      <div class="mk-print" style="transform:rotate(0.3deg)">
-        <div id="mk-spark-storyboard" class="mk-photo" data-label="스토리보드" style="aspect-ratio:4/3;background-image:url('images/making/첫단편스토리보드.png')"></div>
-        <p class="mk-caption">Storyboard</p>
-      </div>
-      <div style="display:grid;grid-template-rows:1fr 1fr;gap:24px;">
-        <div class="mk-print" style="transform:rotate(-0.8deg)">
-          <div id="mk-spark-tino" class="mk-photo" data-label="Tino 캐릭터" style="aspect-ratio:4/3;background-image:url('images/making/티노스케치.png')"></div>
-          <p class="mk-caption">Tino — Concept Sketches</p>
+  <!-- ─── 02. 전역하고 나서 ─── -->
+  <div style="background:#0b1626;">
+    <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
+      <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
+        <!-- Images LEFT -->
+        <div>
+          <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+            <div class="mk-print" style="transform:rotate(-0.8deg)">
+              <div class="mk-photo" data-label="보니 &amp; 현우" style="aspect-ratio:3/4;background-image:url('images/making/보니현우.png')"></div>
+              <p class="mk-caption">Bonnie &amp; Hyunwoo</p>
+            </div>
+            <div class="mk-print" style="transform:rotate(1.0deg);margin-top:32px;">
+              <div class="mk-photo" data-label="헤드 스컬핑" style="aspect-ratio:3/4;background-image:url('images/making/헤드스컬핑.png')"></div>
+              <p class="mk-caption">Head Sculpt Study</p>
+            </div>
+          </div>
+          <div style="max-width:58%;margin-left:auto;">
+            <div class="mk-print" style="transform:rotate(-0.5deg)">
+              <div class="mk-photo" data-label="에러" style="aspect-ratio:4/3;background-image:url('images/making/에러.jpg')"></div>
+              <p class="mk-caption">What the F...</p>
+            </div>
+          </div>
         </div>
-        <div class="mk-print" style="transform:rotate(0.6deg)">
-          <div id="mk-spark-final" class="mk-photo" data-label="최종 완성 장면" style="aspect-ratio:4/3;background-image:url('images/making/단편애니배경.png')"></div>
-          <p class="mk-caption">Shoma</p>
-        </div>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
-      <div class="mk-print" style="transform:rotate(-0.3deg)">
-        <div id="mk-spark-bg" class="mk-photo" data-label="배경 제작" style="aspect-ratio:4/3;background-image:url('images/making/노드.jpg')"></div>
-        <p class="mk-caption">Node</p>
-      </div>
-      <div class="mk-print" style="transform:rotate(0.8deg)">
-        <div id="mk-spark-lighting" class="mk-photo" data-label="라이팅 작업" style="aspect-ratio:4/3;background-image:url('images/making/첫단편작업화면.png')"></div>
-        <p class="mk-caption">Viewport</p>
-      </div>
-      <div class="mk-print" style="transform:rotate(-0.5deg)">
-        <div id="mk-spark-render" class="mk-photo" data-label="완성 렌더" style="aspect-ratio:4/3;background-image:url('images/making/렌더완료.png')"></div>
-        <p class="mk-caption">Completed Render</p>
-      </div>
-    </div>
-  </div>
-
-  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:0 32px;">
-
-  <!-- 04. PROJECT: SHOMA -->
-  <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
-    <p class="mk-label">2025.12.01 ~ 2026.02</p>
-    <h2 class="mk-heading">04. Project: Shoma</h2>
-    <p class="mk-desc">첫 번째 단편을 완성한 이후 이 프로젝트에 처음으로 PROJECT: SHOMA라는 이름을 붙였다. 하나의 단편이 아니라 더 큰 장편 서사를 만들기 시작했다. 전체 이야기를 정리하기 위해 시놉시스를 작성했고, Gevin을 비롯한 새로운 캐릭터들을 제작했다. Episode 2를 기획하고 스토리보드까지 제작했지만, 혼자서 제작하기에는 프로젝트의 규모가 예상보다 훨씬 크다는 것을 알게 되었다. 이것은 포기가 아닌, 제작 방향을 다시 생각하게 된 계기였다.</p>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-bottom:28px;">
-      <div class="mk-print" style="transform:rotate(0.4deg)">
-        <div id="mk-ps-synopsis" class="mk-photo" data-label="시놉시스 초안" style="aspect-ratio:4/3;background-image:url('images/making/애니2편스토리보드.png')"></div>
-        <p class="mk-caption">Episode 2 — Storyboard</p>
-      </div>
-      <div class="mk-print" style="transform:rotate(-0.6deg)">
-        <div id="mk-ps-gevin" class="mk-photo" data-label="Gevin 캐릭터" style="aspect-ratio:4/3;background-image:url('images/making/게빈스케치.png')"></div>
-        <p class="mk-caption">Gevin — Concept sketch</p>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
-      <div class="mk-print" style="transform:rotate(0.7deg)">
-        <div id="mk-ps-logo" class="mk-photo" data-label="PROJECT: SHOMA 로고/타이틀" style="aspect-ratio:4/3;background-image:url('images/making/쇼마게빈.png')"></div>
-        <p class="mk-caption">Project: Shoma — Shoma and Gavin</p>
-      </div>
-      <div class="mk-print" style="transform:rotate(-0.4deg)">
-        <div id="mk-ps-ep2board" class="mk-photo" data-label="Episode 2 스토리보드" style="aspect-ratio:4/3;background-image:url('images/making/도시블록아웃.png')"></div>
-        <p class="mk-caption">Episode 2 — City Blockout</p>
-      </div>
-      <div class="mk-print" style="transform:rotate(0.5deg)">
-        <div id="mk-ps-characters" class="mk-photo" data-label="확장된 캐릭터 라인업" style="aspect-ratio:4/3;background-image:url('images/making/작업사진.png')"></div>
-        <p class="mk-caption">My Workspace</p>
-      </div>
-    </div>
-  </div>
-
-  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:0 32px;">
-
-  <!-- 05. BEYOND THE FILM -->
-  <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
-    <p class="mk-label">2026.03 ~ 05.27</p>
-    <h2 class="mk-heading">05. Beyond the Film</h2>
-    <p class="mk-desc">애니메이션 제작을 잠시 보류한 뒤 학교의 미디어아트 프로젝트인 Seoullo Media Canvas에 참여했다. 기존 캐릭터와 3D 제작 능력을 활용해 Shoma와 Gevin이 등장하는 1-Take 3D Anamorphic 영상을 제작했다. 약 3개월 동안 제작하여 2026년 7월 19일부터 9월 19일까지 실제 전시되었다. PROJECT: SHOMA를 단순한 애니메이션 제작을 넘어 다양한 형태의 미디어로 확장할 수 있다는 가능성을 보여준 작업이었다.</p>
-    <div style="display:grid;grid-template-columns:3fr 2fr;gap:24px;align-items:start;margin-bottom:28px;">
-      <div class="mk-print" style="transform:rotate(-0.2deg)">
-        <div id="mk-ana-exhibit" class="mk-photo" data-label="Seoullo Media Canvas 실제 전시" style="aspect-ratio:4/3;background-image:url('images/making/송출장면.jpg')"></div>
-        <p class="mk-caption">Seoullo Media Canvas — Exhibition, 2026.07–09</p>
-      </div>
-      <div style="display:grid;grid-template-rows:auto auto;gap:24px;align-items:start;">
-        <div class="mk-print" style="transform:rotate(0.7deg)">
-          <div id="mk-ana-render" class="mk-photo" data-label="아나모픽 3D 렌더" style="aspect-ratio:4/3;background-image:url('images/making/아나몰픽초기.png')"></div>
-          <p class="mk-caption">Early Production Renders</p>
-        </div>
-        <div style="display:flex;justify-content:center;">
-          <div class="mk-print" style="transform:rotate(-0.5deg);width:68%;">
-            <div id="mk-ana-process" class="mk-photo" data-label="제작 과정" style="aspect-ratio:4/3;background-image:url('images/making/운동사진.jpg')"></div>
-            <p class="mk-caption">Me at the GYM</p>
+        <!-- Text RIGHT -->
+        <div style="padding-top:48px;">
+          <p class="mk-label">APRIL – JUNE 2025</p>
+          <h2 class="mk-heading">02. 전역하고 나서</h2>
+          <p class="mk-desc">전역 전부터 체중 증량과 운동 계획을 세우고, 새로운 삶을 준비해 왔다. 전역 후에는 콜로소 3D 캐릭터 제작 강의 세 편을 바탕으로 본격적인 독학을 시작했다.<br><br>처음 접하는 3D 제작은 시행착오의 연속이었다. 문제가 생겨도 몇 시간씩 혼자 해결 방법을 찾아야 했지만, 포기하지 않고 작업을 이어갔다. 그렇게 첫 캐릭터 보니를 완성했고, 이어서 현우를 제작했다. 그러나 캐릭터 자체만으로는 아쉬움이 남았다. 캐릭터가 살아갈 세계와 이야기를 함께 만들어야겠다는 생각이 들었다.</p>
+          <div style="display:grid;grid-template-columns:1fr 0.525fr;gap:14px;align-items:end;margin-top:8px;">
+            <div class="mk-print" style="transform:rotate(0.5deg)">
+              <div class="mk-photo" data-label="식단 플랜" style="aspect-ratio:4/3;background-image:url('images/making/식단플랜.jpg')"></div>
+              <p class="mk-caption">Diet Plan</p>
+            </div>
+            <div class="mk-print" style="transform:rotate(-0.7deg);margin-top:20px;">
+              <div class="mk-photo" data-label="운동 플랜" style="aspect-ratio:3/4;background-image:url('images/making/운동플랜.jpg')"></div>
+              <p class="mk-caption">Workout Plan</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:28px;">
-      <div class="mk-print" style="transform:rotate(0.4deg)">
-        <div id="mk-ana-shoma" class="mk-photo" data-label="Shoma — 아나모픽 버전" style="aspect-ratio:4/3;background-image:url('images/making/에러들.jpg')"></div>
-        <p class="mk-caption">Error, Crash Edition</p>
-      </div>
-      <div class="mk-print" style="transform:rotate(-0.6deg)">
-        <div id="mk-ana-gevin" class="mk-photo" data-label="Gevin — 아나모픽 버전" style="aspect-ratio:4/3;background-image:url('images/making/학교렌더링.jpg')"></div>
-        <p class="mk-caption">Rendering at School</p>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0;">
+
+  <!-- ─── 03. 인생의 전환점 ─── -->
+  <div style="background:#060810;">
+    <div class="mk-section" style="padding:108px 32px;max-width:1600px;margin:0 auto;">
+      <div class="mk-grid" style="display:grid;grid-template-columns:5fr 2fr;gap:80px;align-items:center;">
+        <div>
+          <p class="mk-label" style="color:rgba(255,255,255,0.25);">MAY 2025 —</p>
+          <h2 class="mk-heading">03. 인생의 전환점</h2>
+          <div style="width:48px;height:1px;background:#D4922A;margin:28px 0;"></div>
+          <p style="font-size:18px;font-weight:300;line-height:2.1;color:rgba(255,255,255,0.65);margin-bottom:20px;">창작과 운동에 몰두하던 중, 극심한 고통을 동반한 만성 위장 질환으로 건강이 무너졌다. 일상생활조차 어려워졌고, 약 3개월 만에 체중이 10kg 감소하는 등 신체적·정신적으로 힘든 시간을 보냈다.</p>
+          <p style="font-size:18px;font-weight:300;line-height:2.1;color:rgba(255,255,255,0.42);">계획했던 삶이 무너지고 통제할 수 없음에 대한 상실감과 우울감도 겪었다. 외부 활동이 줄어들며 혼자 보내는 시간이 많아졌고, 그 과정에서 삶과 미래에 대해 깊이 고민하게 되었다.</p>
+        </div>
+        <div>
+          <div class="mk-print" style="transform:rotate(-1.2deg);filter:brightness(0.6);margin-left:auto;">
+            <div class="mk-photo" data-label="At the peak — before the fall" style="aspect-ratio:3/4;background-image:url('images/making/병원사진.jpg')"></div>
+            <p class="mk-caption" style="opacity:0.45;">At the peak — before the fall</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:0 32px;">
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0;">
 
-  <!-- 06. BUILDING HARMONY -->
-  <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
-    <p class="mk-label">06 — Building Harmony</p>
-    <h2 class="mk-heading">하나의 IP를 만들다</h2>
-    <p class="mk-desc">Seoullo Media Canvas 프로젝트가 끝난 이후 바로 다음 단편을 만드는 것보다 먼저 PROJECT: SHOMA라는 IP 자체를 제대로 구축하기로 했다. 기존 스토리를 다시 정리하고 캐릭터와 세계관을 대대적으로 확장했다. 그리고 PROJECT: SHOMA의 현재 작품명이 HARMONY로 발전했다.</p>
-    <div style="margin-bottom:28px;">
-      <div class="mk-print" style="transform:rotate(0.2deg)">
-        <div id="mk-harm-characters" class="mk-photo" data-label="확장된 주요 캐릭터" style="aspect-ratio:3/1;background-image:url('images/making/캐릭터라인업.png')"></div>
+  <!-- ─── 04. 끝까지 붙잡은 것 ─── -->
+  <div style="background:#091a2a;">
+    <div class="mk-section" style="padding:90px 32px;max-width:1600px;margin:0 auto;">
+      <!-- 상단: 텍스트 좌 + Early Concept 우(작게) -->
+      <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:40px;">
+        <div style="padding-top:12px;">
+          <p class="mk-label">JUNE 2025 —</p>
+          <h2 class="mk-heading">04. 끝까지 붙잡은 것</h2>
+          <p class="mk-desc" style="margin-bottom:0;">힘든 시간 속에서도 창작에 대한 열망은 사라지지 않았다. 보니와 현우를 만들며 느꼈던 아쉬움에서 출발해, 캐릭터와 세계관을 함께 구상하기 시작했다.<br><br>그렇게 도시를 동경하는 천재 빈민가 소년이라는 아이디어가 탄생했고, 이후 쇼마 쿠로다라는 캐릭터로 발전했다.</p>
+        </div>
+        <div>
+          <div class="mk-print" style="transform:rotate(-0.3deg);max-width:70%;margin-top:72px;margin-left:90px;">
+            <div class="mk-photo" data-label="쇼마 라이팅" style="aspect-ratio:4/3;background-image:url('images/making/쇼마버그.png')"></div>
+            <p class="mk-caption">Shoma Kuroda — Early Concept</p>
+          </div>
+        </div>
+      </div>
+      <!-- 하단: Before / After 메인 이미지 -->
+      <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:24px;align-items:end;">
+        <div class="mk-print" style="transform:rotate(-0.5deg)">
+          <div class="mk-photo" data-label="쇼마 스케치" style="aspect-ratio:4/3;background-image:url('images/making/쇼마스케치.png')"></div>
+          <p class="mk-caption">First Shoma — Concept</p>
+        </div>
+        <div class="mk-print" style="transform:rotate(0.7deg)">
+          <div class="mk-photo" data-label="쇼마 3D" style="aspect-ratio:3/4;background-image:url('images/making/쇼마차렷.png')"></div>
+          <p class="mk-caption">Shoma — 3D Model</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0;">
+
+  <!-- ─── 05. 3D 애니메이션 제작 ─── -->
+  <div style="background:#0e1c30;">
+    <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
+      <p class="mk-label">JUNE – NOVEMBER 2025</p>
+      <h2 class="mk-heading">05. 3D 애니메이션 제작</h2>
+      <div class="mk-grid" style="display:grid;grid-template-columns:3fr 2.5fr;gap:40px;align-items:start;margin-bottom:40px;">
+        <p class="mk-desc" style="margin-bottom:0;">쇼마의 세계를 실제 영상으로 구현하고 싶어 첫 번째 3D 단편 애니메이션 <em>When the Spark Ignites</em>를 기획했다. 쇼마의 집과 친구 티노를 직접 제작하고, 필요한 배경에는 AI의 도움을 활용했다.<br><br>복학 후 학교생활과 병행하며 약 5개월간 작업을 진행했고, 완성한 작품을 학교 전시에 공개하고 유튜브에 업로드했다. 캐릭터 제작에서 시작한 작업이 하나의 영상 작품으로 확장된 순간이었다.</p>
+        <div class="mk-print" style="transform:rotate(-0.8deg);">
+          <div class="mk-photo" data-label="스토리보드" style="aspect-ratio:4/3;background-image:url('images/making/첫단편스토리보드.png');background-size:contain;background-color:#f8f7f4;"></div>
+          <p class="mk-caption">When the Spark Ignites — Storyboard</p>
+        </div>
+      </div>
+      <div class="mk-print" style="transform:rotate(0.2deg);margin-bottom:28px;">
+        <div class="mk-photo" data-label="최종 장면" style="aspect-ratio:16/5;background-image:url('images/making/단편애니배경.png')"></div>
+        <p class="mk-caption">When the Spark Ignites — Final Scene</p>
+      </div>
+      <p style="font-size:9px;font-weight:400;letter-spacing:0.2em;color:rgba(255,255,255,0.2);text-transform:uppercase;margin-bottom:16px;">Production Pipeline</p>
+      <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1fr 1fr 1.6fr;gap:20px;">
+        <div>
+          <p style="font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:0.15em;margin-bottom:8px;">01 / NODE</p>
+          <div class="mk-print" style="transform:rotate(-0.3deg)">
+            <div class="mk-photo" data-label="노드" style="aspect-ratio:4/3;background-image:url('images/making/노드.jpg')"></div>
+            <p class="mk-caption">Node</p>
+          </div>
+        </div>
+        <div style="margin-top:20px;">
+          <p style="font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:0.15em;margin-bottom:8px;">02 / VIEWPORT</p>
+          <div class="mk-print" style="transform:rotate(0.8deg)">
+            <div class="mk-photo" data-label="작업화면" style="aspect-ratio:4/3;background-image:url('images/making/첫단편작업화면.png')"></div>
+            <p class="mk-caption">Viewport</p>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:0.15em;margin-bottom:8px;">03 / RENDER</p>
+          <div class="mk-print" style="transform:rotate(-0.5deg)">
+            <div class="mk-photo" data-label="완성 렌더" style="aspect-ratio:4/3;background-image:url('images/making/렌더완료.png')"></div>
+            <p class="mk-caption">Completed Render</p>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:9px;color:rgba(255,255,255,0.2);letter-spacing:0.15em;margin-bottom:8px;">— FINAL</p>
+          <div class="mk-print" style="transform:rotate(0.6deg)">
+            <div class="mk-photo" data-label="티노" style="aspect-ratio:4/3;background-image:url('images/making/티노스케치.png')"></div>
+            <p class="mk-caption">Tino</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0;">
+
+  <!-- ─── 06. 더 큰 계획과 시행착오 ─── -->
+  <div style="background:#080f1c;">
+    <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
+      <!-- 상단 2열: 텍스트 LEFT, 스토리보드 RIGHT -->
+      <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:32px;">
+        <div>
+          <p class="mk-label">DECEMBER 2025 – FEBRUARY 2026</p>
+          <h2 class="mk-heading">06. 더 큰 계획과<br>시행착오</h2>
+          <p class="mk-desc" style="margin-bottom:32px;">첫 단편을 완성한 뒤, 장편 서사를 가진 애니메이션을 만들고 싶어졌다. 휴학 신청을 하고 쇼마의 세계관과 이야기를 확장하며 PROJECT: SHOMA를 시작했다. 그 과정에서 게빈을 비롯한 새로운 캐릭터들이 탄생했다.<br><br>그러나 혼자서 원하는 규모와 완성도의 애니메이션을 제작하는 데에는 현실적인 한계가 있었다. 두 번째 작품의 기획과 스토리보드까지 완성했지만, 제작 과정의 어려움과 건강 문제로 작업을 잠정 중단했다.</p>
+          <!-- 게빈 스케치 -->
+          <div class="mk-print" style="transform:rotate(0.6deg);max-width:72%;">
+            <div class="mk-photo" data-label="게빈 스케치" style="aspect-ratio:4/3;background-image:url('images/making/게빈스케치.png')"></div>
+            <p class="mk-caption">Gavin — Concept Sketch</p>
+          </div>
+        </div>
+        <div style="padding-top:12px;">
+          <div class="mk-print" style="transform:rotate(0.5deg)">
+            <div class="mk-photo" data-label="Episode 2 스토리보드" style="aspect-ratio:4/3;background-image:url('images/making/애니2편스토리보드.png')"></div>
+            <p class="mk-caption">Episode 2 — Storyboard</p>
+          </div>
+        </div>
+      </div>
+      <!-- 하단: 3열 이미지 꽉 채움 -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:start;">
+        <div class="mk-print" style="transform:rotate(0.7deg)">
+          <div class="mk-photo" data-label="쇼마 &amp; 게빈" style="aspect-ratio:4/3;background-image:url('images/making/쇼마게빈.png')"></div>
+          <p class="mk-caption">Shoma &amp; Gavin</p>
+        </div>
+        <div class="mk-print" style="transform:rotate(-0.4deg);margin-top:20px;">
+          <div class="mk-photo" data-label="도시 블록아웃" style="aspect-ratio:4/3;background-image:url('images/making/도시블록아웃.png')"></div>
+          <p class="mk-caption">City Blockout</p>
+        </div>
+        <div class="mk-print" style="transform:rotate(0.5deg)">
+          <div class="mk-photo" data-label="작업 사진" style="aspect-ratio:4/3;background-image:url('images/making/작업사진.png')"></div>
+          <p class="mk-caption">My Workspace</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0;">
+
+  <!-- ─── 07. 서울로미디어캔버스 ─── -->
+  <div style="background:#0a1525;">
+    <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
+      <p class="mk-label">MARCH – MAY 2026</p>
+      <h2 class="mk-heading">07. 서울로미디어캔버스</h2>
+      <div class="mk-print" style="transform:rotate(-0.1deg);margin-bottom:40px;">
+        <div class="mk-photo" data-label="서울로 미디어캔버스 송출" style="aspect-ratio:4/1;background-image:url('images/making/송출장면.jpg');background-size:cover;background-position:center;"></div>
+        <p class="mk-caption">Seoullo Media Canvas — 2000×500 Anamorphic Display, 2026.07–09</p>
+      </div>
+      <div class="mk-grid mk-grid-4" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:24px;align-items:start;">
+        <div style="grid-column:span 2;padding-right:24px;">
+          <p style="font-size:17px;font-weight:300;line-height:2.1;color:rgba(255,255,255,0.75);">PROJECT: SHOMA의 제작 방향을 고민하던 중, 교수님의 권유로 서울로미디어캔버스 대학 협력전에 참여하게 되었다.<br><br>2000×500의 독특한 화면비에 맞춰 쇼마와 게빈이 등장하는 3D 아나몰픽 영상을 제작했다. 원테이크 형식과 캐릭터 움직임을 직접 제어하는 작업은 쉽지 않았고 아쉬움이 많이 남았지만, 완성된 작품이 서울 도심의 대형 전광판에서 송출되는 특별한 경험을 할 수 있었다.</p>
+        </div>
+        <div class="mk-print" style="transform:rotate(0.9deg)">
+          <div class="mk-photo" data-label="초기 렌더" style="aspect-ratio:16/9;background-image:url('images/making/아나몰픽초기.png')"></div>
+          <p class="mk-caption">Early Renders</p>
+        </div>
+        <div class="mk-print" style="transform:rotate(-0.6deg);margin-top:32px;">
+          <div class="mk-photo" data-label="학교 렌더링" style="aspect-ratio:16/9;background-image:url('images/making/학교렌더링.jpg')"></div>
+          <p class="mk-caption">Rendering at School</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0;">
+
+  <!-- ─── 08. PROJECT: SHOMA 다시 시작 ─── -->
+  <div style="background:#0f1d32;position:relative;overflow:hidden;">
+    <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;position:relative;z-index:1;">
+      <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1.8fr;gap:64px;align-items:start;">
+        <div>
+          <p class="mk-label">JUNE 2026 —</p>
+          <h2 class="mk-heading">08. PROJECT: SHOMA<br>다시 시작</h2>
+          <p class="mk-desc" style="margin-bottom:0;">미디어파사드 작업을 마무리하며 프로젝트의 방향을 다시 고민했다. 애니메이션 전체를 혼자 제작하기 어렵다면, 다른 방식으로 내가 구상한 세계를 사람들에게 전달할 수 있지 않을까?<br><br>그렇게 IP 패키지 형태의 프로젝트를 구상하고 웹사이트 제작을 시작했다. 스토리를 개선하는 동시에 새로운 캐릭터와 에셋을 기획하고 3D로 구현하며 세계관을 확장해 나갔다.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <!-- 장면이미지 (3:1) 우측 전체 너비 -->
+          <div class="mk-print" style="transform:rotate(0.2deg)">
+            <div class="mk-photo" data-label="장면 이미지" style="aspect-ratio:3/1;background-image:url('images/making/디지털컨셉스케치.png')"></div>
+            <p class="mk-caption">Scene Image</p>
+          </div>
+          <!-- 스케치 + 게빈&엔나 나란히 -->
+          <div style="display:grid;grid-template-columns:2fr 3fr;gap:16px;align-items:start;">
+            <div class="mk-print" style="transform:rotate(-0.5deg)">
+              <div class="mk-photo" data-label="스케치 모음" style="aspect-ratio:4/3;background-image:url('images/making/스케치모음.jpg')"></div>
+              <p class="mk-caption">Character Concept Sketches</p>
+            </div>
+            <div class="mk-print" style="transform:rotate(0.4deg);margin-top:28px;">
+              <div class="mk-photo" data-label="게빈 &amp; 엔나" style="aspect-ratio:16/9;background-image:url('images/making/게빈엔나대화.png')"></div>
+              <p class="mk-caption">Gavin &amp; Enna</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr style="border:none;border-top:1px solid rgba(255,255,255,0.06);margin:0;">
+
+  <!-- ─── 09. 현재 ─── -->
+  <div style="background:#090e1c;">
+    <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
+      <!-- 상단: 텍스트 좌 + 스탯 우 -->
+      <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:40px;">
+        <div>
+          <p class="mk-label">OCTOBER 2026</p>
+          <h2 class="mk-heading">09. 현재</h2>
+          <p class="mk-desc" style="margin-bottom:0;">현재까지 10종 이상의 캐릭터와 의상, 소품, 차량 등을 3D로 제작했다. 스토리도 여러 차례 수정과 재구성을 거쳐 완결된 시놉시스 형태로 정리했다.<br><br>제작한 에셋을 활용해 장면 이미지와 포스터, 영상 등을 만들고 있으며, 이를 하나로 연결할 공식 웹사이트를 제작하고 있다. HARMONY의 외형 디자인과 추가 캐릭터 제작은 여전히 진행 중이다. 건강도 이전보다 회복되어 운동과 식단을 조금씩 다시 이어가고 있다.</p>
+        </div>
+        <div style="padding-top:72px;">
+          <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.08);">
+            <div style="background:rgba(255,255,255,0.04);padding:20px 16px;">
+              <p style="font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:#D4922A;margin-bottom:6px;">Characters</p>
+              <p style="font-size:26px;font-weight:200;color:#fff;line-height:1;">10+</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);padding:20px 16px;">
+              <p style="font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:#D4922A;margin-bottom:6px;">Story</p>
+              <p style="font-size:13px;font-weight:300;color:rgba(255,255,255,0.8);">Synopsis V6.0</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);padding:20px 16px;">
+              <p style="font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:#D4922A;margin-bottom:6px;">World</p>
+              <p style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.5;">Glory Bay · Rattown</p>
+            </div>
+            <div style="background:rgba(255,255,255,0.04);padding:20px 16px;">
+              <p style="font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:#D4922A;margin-bottom:6px;">Status</p>
+              <p style="font-size:12px;font-weight:300;color:rgba(255,255,255,0.75);line-height:1.5;">In Development</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 캐릭터 라인업 풀 너비 -->
+      <div class="mk-print" style="transform:rotate(0.2deg);margin-bottom:20px;">
+        <div class="mk-photo" data-label="캐릭터 라인업" style="aspect-ratio:3/1;background-image:url('images/making/캐릭터라인업.png')"></div>
         <p class="mk-caption">10+ Characters Developed</p>
       </div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:28px;margin-bottom:28px;">
-      <div class="mk-print" style="transform:rotate(-0.4deg)">
-        <div id="mk-harm-racingcar" class="mk-photo" data-label="레이싱카" style="aspect-ratio:4/3;background-image:url('images/making/스케치모음.jpg')"></div>
-        <p class="mk-caption">Character Concept Sketches</p>
-      </div>
-      <div class="mk-print" style="transform:rotate(0.6deg)">
-        <div id="mk-harm-scene" class="mk-photo" data-label="영화 장면" style="aspect-ratio:16/9;background-image:url('images/making/게빈엔나대화.png')"></div>
-        <p class="mk-caption">Gavin & Enna</p>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:28px;align-items:start;">
-      <div class="mk-print" style="transform:rotate(0.3deg)">
-        <div id="mk-harm-heart" class="mk-photo" data-label="H.E.A.R.T. Project" style="aspect-ratio:4/3;background-image:url('images/making/레이싱카초기.png')"></div>
-        <p class="mk-caption">STRAY Racing car Modeling</p>
-      </div>
-      <div class="mk-print" style="transform:rotate(-0.5deg)">
-        <div id="mk-harm-synopsis" class="mk-photo" data-label="HARMONY Synopsis V6.0" style="aspect-ratio:3/4;background-image:url('images/making/너트윅리그.png')"></div>
-        <p class="mk-caption">Nutwick Twins Rigging</p>
+      <!-- 하단 이미지 그리드 -->
+      <div style="display:grid;grid-template-columns:1fr 0.7fr 1fr 1fr;gap:16px;align-items:end;">
+        <div class="mk-print" style="transform:rotate(0.6deg)">
+          <div class="mk-photo" data-label="레이싱카" style="aspect-ratio:4/3;background-image:url('images/making/레이싱카초기.png')"></div>
+          <p class="mk-caption">STRAY Racing Car</p>
+        </div>
+        <div class="mk-print" style="transform:rotate(-0.5deg);margin-top:16px;">
+          <div class="mk-photo" data-label="운동 사진" style="aspect-ratio:4/3;background-image:url('images/making/운동사진.jpg')"></div>
+          <p class="mk-caption">At the GYM</p>
+        </div>
+        <div class="mk-print" style="transform:rotate(0.3deg)">
+          <div class="mk-photo" data-label="Key Visual" style="aspect-ratio:929/1312;background-image:url('images/making/키비주얼포스터.png')"></div>
+          <p class="mk-caption">Key Visual — The World</p>
+        </div>
+        <div class="mk-print" style="transform:rotate(-0.3deg);margin-top:20px;">
+          <div class="mk-photo" data-label="추가 이미지" style="aspect-ratio:4/3;"></div>
+          <p class="mk-caption">—</p>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- CLOSING -->
-  <div style="padding:80px 32px 60px;max-width:1600px;margin:0 auto;" class="mk-section">
-    <div style="width:1px;height:60px;background:rgba(255,255,255,0.12);margin:0 auto 48px;"></div>
-    <div style="text-align:center;margin-bottom:60px;">
-      <p style="font-size:clamp(20px,4vw,52px);font-weight:200;letter-spacing:0.06em;color:#ffffff;text-transform:uppercase;margin-bottom:24px;">From an Idea<br>to a Film World</p>
-    </div>
-
-    <!-- Status Grid -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.08);margin-bottom:60px;">
-      <div style="background:rgba(255,255,255,0.04);padding:32px 24px;text-align:center;">
-        <p style="font-size:9px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:#D4922A;margin-bottom:10px;">Story</p>
-        <p style="font-size:13px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.8);">HARMONY<br>Synopsis V6.0</p>
-      </div>
-      <div style="background:rgba(255,255,255,0.04);padding:32px 24px;text-align:center;">
-        <p style="font-size:9px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:#D4922A;margin-bottom:10px;">Characters</p>
-        <p style="font-size:13px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.8);">10+<br>Characters Developed</p>
-      </div>
-      <div style="background:rgba(255,255,255,0.04);padding:32px 24px;text-align:center;">
-        <p style="font-size:9px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:#D4922A;margin-bottom:10px;">World</p>
-        <p style="font-size:13px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.8);">Glory Bay · Rattown<br>Stratos Cup</p>
-      </div>
-      <div style="background:rgba(255,255,255,0.04);padding:32px 24px;text-align:center;">
-        <p style="font-size:9px;font-weight:400;letter-spacing:0.18em;text-transform:uppercase;color:#D4922A;margin-bottom:10px;">Production</p>
-        <p style="font-size:13px;font-weight:300;line-height:1.6;color:rgba(255,255,255,0.8);">Feature-Length IP<br>In Development</p>
-      </div>
-    </div>
-
-    <!-- Representative Images -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:32px;">
-      <div class="mk-print" style="transform:rotate(-0.3deg)">
-        <div id="mk-final-img1" class="mk-photo" data-label="주요 캐릭터 대표 이미지" style="aspect-ratio:4/3;background-image:url('images/making/final_img1.jpg')"></div>
-        <p class="mk-caption">Characters</p>
-      </div>
-      <div class="mk-print" style="transform:rotate(0.5deg)">
-        <div id="mk-final-img2" class="mk-photo" data-label="Glory Bay · Rattown · Stratos Cup" style="aspect-ratio:16/9;background-image:url('images/making/final_img2.jpg')"></div>
-        <p class="mk-caption">The World</p>
-      </div>
-      <div class="mk-print" style="transform:rotate(-0.4deg)">
-        <div id="mk-final-img3" class="mk-photo" data-label="HARMONY 영화 장면" style="aspect-ratio:16/9;background-image:url('images/making/final_img3.jpg')"></div>
-        <p class="mk-caption">HARMONY</p>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-bottom:100px;">
-      <p style="font-size:11px;font-weight:300;letter-spacing:0.18em;color:rgba(255,255,255,0.3);text-transform:uppercase;">Project: Shoma · Ongoing since April 2025</p>
+  <!-- ─── 11. THE NEXT CHAPTER ─── -->
+  <div style="background:linear-gradient(180deg,#090e1c 0%,#060810 100%);">
+    <div class="mk-section" style="padding:120px 32px 160px;max-width:1000px;margin:0 auto;text-align:center;">
+      <div style="width:48px;height:1px;background:rgba(255,255,255,0.12);margin:0 auto 60px;"></div>
+      <p style="font-size:9px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:#D4922A;margin-bottom:48px;">10. 앞으로의 계획 — The Next Chapter</p>
+      <p style="font-size:clamp(14px,1.5vw,18px);font-weight:300;line-height:2.1;color:rgba(255,255,255,0.38);margin-bottom:56px;">작은 3D 캐릭터 연구에서 시작되어<br>이제 하나의 독립적인 영화 세계로 성장했다.</p>
+      <p style="font-size:clamp(22px,3vw,42px);font-weight:200;line-height:1.65;color:#ffffff;letter-spacing:-0.01em;margin-bottom:56px;">나의 장기적인 목표는<br>세계적인 수준의 장편 3D 애니메이션을 만드는 것이다.</p>
+      <p style="font-size:clamp(13px,1.4vw,17px);font-weight:300;line-height:2.1;color:rgba(255,255,255,0.45);">우선 HARMONY를 통해 내가 가진 역량과 가능성을 실제 결과물로 증명하고 싶다.<br>이후 더 큰 제작 환경에서 다양한 분야의 전문가들과 협업하며,<br>내가 구상한 이야기를 장편 영화로 완성하는 것이 앞으로의 목표다.</p>
+      <div style="width:40px;height:1px;background:rgba(255,255,255,0.1);margin:80px auto 0;"></div>
     </div>
   </div>
 
-  <!-- THE NEXT CHAPTER -->
-  <div class="mk-section" style="padding:80px 32px 140px;max-width:1100px;margin:0 auto;text-align:center;">
-    <div style="width:40px;height:1px;background:rgba(255,255,255,0.15);margin:0 auto 48px;"></div>
-    <p style="font-size:9px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:#D4922A;margin-bottom:28px;">The Next Chapter</p>
-    <p style="font-size:clamp(18px,2.2vw,26px);font-weight:300;line-height:1.75;color:#ffffff;letter-spacing:0.01em;margin-bottom:40px;">작은 3D 캐릭터 연구에서 시작되어<br>이제 하나의 독립적인 영화 세계로 성장했다.<br><br>HARMONY는 지금까지 쌓아온 작업을 하나의 애니메이션 영화 IP로 발전시키고,<br>창작자로서 더 넓은 가능성에 도전하는 과정이다.<br><br>이 경험을 발판 삼아 더 큰 제작 환경에서 다양한 창작자들과 함께 영화를 만들고,<br>궁극적으로는 세계적인 수준의 장편 애니메이션을 만드는 것이 목표다.</p>
-    
-    <div style="width:40px;height:1px;background:rgba(255,255,255,0.12);margin:56px auto 0;"></div>
-  </div>
 
 </div><!-- /#making-overlay -->
+
 
 <style>
 /* Making overlay 공통 클래스 */
@@ -2549,13 +2636,23 @@ document.addEventListener('keydown', e => {
 
 @media(max-width:900px){
   #making-overlay > div:first-child { padding:18px 24px !important; }
-  #making-overlay [style*="padding:80px 32px"] { padding:60px 16px 36px !important; }
   .mk-section { padding:50px 20px !important; }
-  #making-overlay hr { margin:0 16px !important; }
+  #making-overlay hr { margin:0 !important; }
+  .mk-grid { grid-template-columns:1fr !important; }
+  [style*="grid-template-columns:1fr 1fr"],
   [style*="grid-template-columns:3fr 2fr"],
+  [style*="grid-template-columns:2fr 3fr"],
+  [style*="grid-template-columns:5fr 3fr"],
+  [style*="grid-template-columns:3fr 1.2fr"],
+  [style*="grid-template-columns:1fr 1fr 1fr"],
+  [style*="grid-template-columns:1fr 1fr 1fr 1fr"],
+  [style*="grid-template-columns:1fr 1fr 1fr 1.6fr"],
   [style*="grid-template-columns:repeat(3,1fr)"],
   [style*="grid-template-columns:repeat(4,1fr)"] { grid-template-columns:1fr !important; }
-  [style*="grid-template-columns:repeat(2,1fr)"] { grid-template-columns:1fr !important; }
+  [style*="grid-column:span 2"] { grid-column:span 1 !important; }
+  .mk-supp-strip { max-width:100% !important; }
+  .mk-pipeline-step { margin-top:0 !important; }
+  [style*="align-self:flex-end"] { align-self:auto !important; width:100% !important; }
 }
 </style>
 
