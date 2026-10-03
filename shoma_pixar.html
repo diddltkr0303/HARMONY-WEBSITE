@@ -2353,28 +2353,29 @@ document.addEventListener('keydown', e => {
   <!-- Making Nav -->
   <div style="
     position: sticky; top: 0; z-index: 10;
-    padding: 20px 32px;
-    display: flex; align-items: center;
+    padding: 0 16px;
+    display: flex; align-items: center; justify-content: space-between;
     background: rgba(9,18,29,0.92);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255,255,255,0.06);
+    min-height: 56px;
   ">
     <button onclick="closeMaking()" style="
-      font-family: var(--display); font-size: 13px; font-weight: 400;
-      letter-spacing: 2.5px; text-transform: uppercase;
-      padding: 14px 36px;
+      font-family: var(--display); font-size: 11px; font-weight: 400;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 8px 12px;
       color: rgba(255,255,255,0.5);
       background: transparent;
       border: none;
       cursor: pointer;
-      display: inline-flex; align-items: center; gap: 10px;
-      transition: color 0.2s;
+      display: inline-flex; align-items: center; gap: 8px;
+      transition: color 0.2s; white-space: nowrap; flex-shrink: 0;
     " onmouseover="this.style.color='rgba(255,255,255,0.95)'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">← PROJECT:SHOMA</button>
     <span style="
       font-size: 10px; font-weight: 300; letter-spacing: 0.18em;
       color: rgba(255,255,255,0.35); text-transform: uppercase;
-      position: absolute; left: 50%; transform: translateX(-50%);
+      flex-shrink: 0; padding: 0 8px;
     ">Making Of</span>
   </div>
 
@@ -2397,7 +2398,7 @@ document.addEventListener('keydown', e => {
       <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;margin-bottom:32px;">
         <div>
           <p class="mk-label" style="margin-bottom:8px;">APRIL 2025</p>
-          <h2 class="mk-heading">01. The Beginning</h2>
+          <h2 class="mk-heading">01. 군대라는 공간에서</h2>
           <p class="mk-desc" style="margin-bottom:0;">군 생활 중에도 그림과 운동을 놓지 않았다. 전역을 기다리며 앞으로 무엇을 하며 살아갈지 진지하게 고민하기 시작했다.<br><br>2025년 4월 전역 후, 예전부터 도전하고 싶었던 스타일라이즈드 3D 캐릭터 제작을 시작했다. 내가 원하는 것을 직접 만들어내기 위한 첫걸음이었다.</p>
         </div>
         <div class="mk-discharge-wrap mk-pc-only" style="padding-top:16px;">
@@ -2446,7 +2447,7 @@ document.addEventListener('keydown', e => {
         <div style="grid-column:2;grid-row:1;padding-top:48px;">
           <p class="mk-label">APRIL – JUNE 2025</p>
           <h2 class="mk-heading">02. 전역하고 나서</h2>
-          <p class="mk-desc">전역 전부터 체중 증량과 운동 계획을 세우고, 새로운 삶을 준비해 왔다. 전역 후에는 콜로소 3D 캐릭터 제작 강의 세 편을 바탕으로 본격적인 독학을 시작했다.<br><br>처음 접하는 3D 제작은 시행착오의 연속이었다. 문제가 생겨도 몇 시간씩 혼자 해결 방법을 찾아야 했지만, 포기하지 않고 작업을 이어갔다. 그렇게 첫 캐릭터 보니를 완성했고, 이어서 현우를 제작했다. 그러나 캐릭터 자체만으로는 아쉬움이 남았다. 캐릭터가 살아갈 세계와 이야기를 함께 만들어야겠다는 생각이 들었다.</p>
+          <p class="mk-desc">군 복무 시절부터 꾸준히 운동을 해왔고, 전역 전 몸을 더 키우기 위한 운동 계획을 세워 새로운 삶을 준비했다. 전역 후에는 콜로소 3D 캐릭터 제작 강의 세 편을 바탕으로 본격적인 독학을 시작했다.<br><br>처음 접하는 3D 제작은 시행착오의 연속이었다. 문제가 생겨도 몇 시간씩 혼자 해결 방법을 찾아야 했지만, 포기하지 않고 작업을 이어갔다. 그렇게 첫 캐릭터 보니를 완성했고, 이어서 현우를 제작했다. 그러나 캐릭터 자체만으로는 아쉬움이 남았다. 캐릭터가 살아갈 세계와 이야기를 함께 만들어야겠다는 생각이 들었다.</p>
         </div>
 
         <!-- [HTML 2] 3D 이미지 — PC: col1 row1/3 (보니 크게 + 헤드+에러 2열) -->
@@ -2497,7 +2498,7 @@ document.addEventListener('keydown', e => {
           <p class="mk-label" style="color:rgba(255,255,255,0.25);">MAY 2025 —</p>
           <h2 class="mk-heading">03. 인생의 전환점</h2>
           <div style="width:48px;height:1px;background:#D4922A;margin:28px 0;"></div>
-          <p style="font-size:18px;font-weight:300;line-height:2.1;color:rgba(255,255,255,0.65);margin-bottom:20px;">창작과 운동에 몰두하던 중, 극심한 고통을 동반한 만성 위장 질환으로 건강이 무너졌다. 일상생활조차 어려워졌고, 약 3개월 만에 체중이 10kg 감소하는 등 신체적·정신적으로 힘든 시간을 보냈다.</p>
+          <p style="font-size:18px;font-weight:300;line-height:2.1;color:rgba(255,255,255,0.65);margin-bottom:20px;">창작과 운동에 몰두하던 중, 원인을 알 수 없는 만성 위장 질환으로 건강이 무너졌다. 일상생활조차 어려워졌고, 약 3개월 만에 체중이 10kg 감소하는 등 신체적·정신적으로 힘든 시간을 보냈다.</p>
           <p style="font-size:18px;font-weight:300;line-height:2.1;color:rgba(255,255,255,0.42);">계획했던 삶이 무너지고 통제할 수 없음에 대한 상실감과 우울감도 겪었다. 외부 활동이 줄어들며 혼자 보내는 시간이 많아졌고, 그 과정에서 삶과 미래에 대해 깊이 고민하게 되었다.</p>
         </div>
         <div>
@@ -2684,7 +2685,7 @@ document.addEventListener('keydown', e => {
       <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1.8fr;gap:64px;align-items:start;">
         <div>
           <p class="mk-label">JUNE 2026 —</p>
-          <h2 class="mk-heading">08. 다시 시작하다</h2>
+          <h2 class="mk-heading">08. 발상의 전환</h2>
           <p class="mk-desc" style="margin-bottom:0;">미디어파사드 작업을 마무리하며 프로젝트의 방향을 다시 고민했다. 애니메이션 전체를 혼자 제작하기 어렵다면, 다른 방식으로 내가 구상한 세계를 사람들에게 전달할 수 있지 않을까?<br><br>그렇게 IP 패키지 형태의 프로젝트를 구상하고 웹사이트 제작을 시작했다. 스토리를 개선하는 동시에 새로운 캐릭터와 에셋을 기획하고 3D로 구현하며 세계관을 확장해 나갔다.</p>
         </div>
         <div style="display:flex;flex-direction:column;gap:20px;">
@@ -2700,8 +2701,8 @@ document.addEventListener('keydown', e => {
               <p class="mk-caption">Character Concept Sketches</p>
             </div>
             <div class="mk-print" style="transform:rotate(0.4deg);margin-top:28px;">
-              <div class="mk-photo" data-label="게빈 &amp; 엔나" style="aspect-ratio:16/9;background-image:url('images/making/게빈엔나대화.png')"></div>
-              <p class="mk-caption">Gavin &amp; Enna</p>
+              <div class="mk-photo" data-label="게빈 &amp; 엔나" style="aspect-ratio:16/9;background-image:url('images/making/너트윅리그.png')"></div>
+              <p class="mk-caption">Nutwick Twins Base Model Rigging</p>
             </div>
           </div>
         </div>
