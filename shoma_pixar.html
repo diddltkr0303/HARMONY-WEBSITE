@@ -965,9 +965,10 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 #gallery .shd::after {
   display: none;
 }
-/* World 마지막(아이보리) 다음 Teams, Connection 마지막(아이보리) 다음 Gallery — 곡선 아이보리로 */
-#teams .shd::before,
+/* Connection 마지막(아이보리) 다음 Gallery — 곡선 아이보리로 */
 #gallery .shd::before { background: var(--off-white); }
+/* Teams 상단 곡선 제거 — 위 섹션과 경계에서 아이보리 띠 노출 방지 */
+#teams .shd::before { display: none; }
 
 /* 갤러리 shd 하단: 배경이미지 → 완전한 네이비로 페이드 */
 #gallery .shd-overlay {
@@ -1126,80 +1127,169 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 
   /* NAV */
   #nav {
-    grid-template-columns: 1fr auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     padding: 0 20px;
+    height: 64px;
+    min-height: 64px;
+    max-height: 64px;
+    background: rgba(0,0,0,1);
   }
+  #nav.scrolled { background: rgba(255,255,255,0.94) !important; }
   .nav-links, #langToggle { display: none !important; }
-  .nav-hamburger { display: flex; }
+  .nav-hamburger { display: flex; align-items: center; padding: 10px; }
 
-  /* HERO */
-  #hero { padding-bottom: 72px; }
-  #hero img[alt="HARMONY"] {
-    width: clamp(240px, 80vw, 440px) !important;
+  /* ── HERO: 영상 16/9 비율 고정, 곡선/로고 위치 정리 ── */
+  #hero {
+    position: relative;
+    height: auto !important;
+    min-height: 0 !important;
+    padding-bottom: 0 !important;
+    display: block;
+    overflow: visible;
   }
-  .hero-eyebrow { font-size: 10px; }
-  .hero-sub { font-size: 11px; }
+  /* hero-bg: 화면 2/3 높이, nav가 위에 겹치도록 */
+  .hero-bg {
+    position: relative !important;
+    inset: unset !important;
+    width: 100%;
+    height: 83vh;
+    margin-top: 0;
+  }
+  .hero-bg video {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  /* overlay: hero-bg 안에서만 */
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(14,27,45,0.0) 0%,
+      rgba(14,27,45,0.0) 20%,
+      rgba(14,27,45,0.5) 65%,
+      rgba(14,27,45,0.3) 85%,
+      rgba(14,27,45,0.0) 100%
+    );
+    z-index: 1;
+  }
+  /* 로고/텍스트: 영상 하단에 위치 */
+  .hero-content {
+    position: absolute;
+    bottom: 5%; left: 0; right: 0;
+    text-align: center; z-index: 2;
+    padding: 0 12px;
+  }
+  /* 하단 흰 곡선: 모바일에서 높이 대폭 축소 */
+  #hero::after {
+    height: 28px !important;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0 !important;
+    left: 0 !important; width: 100% !important;
+  }
+  .hero-eyebrow { font-size: 8px; letter-spacing: 2px; margin-bottom: 8px !important; line-height: 1; }
+  #hero img[alt="HARMONY"] { width: clamp(200px, 75vw, 340px) !important; margin: 0 auto !important; display: block; }
+  .hero-sub { font-size: 9px; letter-spacing: 2px; margin-top: 8px !important; line-height: 1; }
 
-  /* SHD 헤더 높이 축소 */
+  /* ── SHD 헤더: 좌우 흰 여백 제거 및 높이 ── */
   .shd { height: 40vh !important; min-height: 240px !important; }
-  .shd::before, .shd::after { height: 48px; }
-  #crew-header { height: 40vh; min-height: 240px; }
-  #crew-header::before, #crew-header::after { height: 48px; }
+  /* 곡선 의사요소: left/width를 0/100%로 맞춰 흰 여백 없애기 */
+  /* #world padding 제거 — 24px 좌우 padding이 .shd 너비를 좁히던 원인 */
+  #world { padding: 0 !important; }
+  #teams { padding: 0 !important; }
 
-  /* SYNOPSIS */
+  /* 곡선: 상하 모두 복원, 모바일에서 좌우 꽉 채우기 */
+  .shd::before,
+  #crew-header::before,
+  .world-header::before {
+    left: 0 !important; width: 100% !important;
+    height: 32px !important;
+    border-radius: 0 0 50% 50% / 0 0 32px 32px !important;
+  }
+  .shd::after,
+  #crew-header::after,
+  .world-header::after {
+    left: 0 !important; width: 100% !important;
+    height: 32px !important;
+    border-radius: 50% 50% 0 0 / 32px 32px 0 0 !important;
+  }
+  #crew-header { height: 40vh; min-height: 240px; }
+
+  /* ── SYNOPSIS ── */
   #synopsis { padding: 80px 24px 64px; }
   .synopsis-tagline { font-size: clamp(22px, 6vw, 36px); }
   .synopsis-text { font-size: 15px; }
 
-  /* SCENES */
+  /* ── SCENES ── */
+  #scenes { padding-bottom: 120px !important; }
   .scenes-nav-row { overflow-x: auto; }
 
-  /* CHARACTERS */
-  .fz-circles { gap: 20px 14px; padding: 0 16px; }
+  /* ── CHARACTERS: 원형 아이콘과 상세 카드 간격 축소 ── */
+  .fz-circles { gap: 20px 14px; padding: 0 16px; margin-bottom: 24px !important; }
   .fz-circle { width: 72px; height: 72px; }
   .fz-name { font-size: 10px; }
   .fz-detail { flex-direction: column; padding: 28px 24px; gap: 24px; max-width: 100%; margin: 0 16px; }
   .fz-detail-portrait { width: 160px; height: 160px; align-self: center; }
   #characters { padding: 60px 0 80px; }
 
-  /* WORLD */
-  .world-list { padding: 60px 20px 80px; gap: 60px; }
+  /* ── WORLD: 아이보리 배경 풀너비, 포트레이트/썸네일 크기 조정 ── */
+  .world-list { padding: 0; gap: 0; }
   .world-item,
-  .world-item:nth-child(even) { grid-template-columns: 1fr; gap: 28px; padding: 60px 24px; }
+  .world-item:nth-child(even) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 48px 20px 48px;
+    width: 100%; box-sizing: border-box;
+    /* 아이보리 배경이 좌우 꽉 차도록 마진 제거 */
+    margin: 0;
+  }
   .world-item:nth-child(even) .world-item-portrait,
   .world-item:nth-child(even) .world-item-info { order: unset; }
-  .world-item-portrait { width: 200px; height: 200px; margin: 0 auto; }
-  .world-item-name { font-size: 26px; }
-  .world-item-thumbs { grid-template-columns: repeat(2, 1fr); }
+  /* 포트레이트 원형: 너무 크지 않게 */
+  .world-item-portrait { width: 160px; height: 160px; margin: 0 auto; }
+  .world-item-name { font-size: 24px; }
+  /* 썸네일 4장 → 2×2, 적당한 크기 */
+  .world-item-thumbs { grid-template-columns: repeat(2, 1fr); gap: 6px; margin-top: 16px; }
+  .world-item-thumb { aspect-ratio: 4/3; }
 
-  /* TEAMS */
-  .teams-container { padding: 56px 20px 80px; }
+  /* ── TEAMS: 유니폼 크기 줄이고 이미지 영역 확보 ── */
+  .teams-container { padding: 0; }
   .team-card,
   .team-astera { grid-template-columns: 1fr !important; }
-  .team-image-side { min-height: 56vw; }
-  .team-main-frame { min-height: 56vw; background-position: center center; }
-  .team-text { padding: 40px 24px !important; }
-  .team-name { font-size: clamp(36px, 10vw, 64px); }
-  .team-uniforms { gap: 10px; }
-  .team-uniform { width: 80px; }
+  /* 이미지 사이드: 화면 높이 충분히 확보 */
+  .team-image-side { min-height: 72vw; order: -1; }
+  .team-main-frame {
+    min-height: 72vw;
+    background-position: center center;
+    background-size: contain;
+  }
+  .team-text { padding: 32px 20px 48px !important; }
+  .team-name { font-size: clamp(32px, 9vw, 56px); }
+  /* 유니폼 3장: 작게 */
+  .team-uniforms { gap: 8px; margin-top: 20px; }
+  .team-uniform { width: 64px; }
 
   /* CONNECTION */
   .world-item-desc { font-size: 14px; line-height: 1.75; }
 
-  /* GALLERY */
-  .gallery-grid { grid-template-columns: 1fr 1fr; gap: 3px; padding: 3px 0 80px; }
-  .g-item--large { grid-column: span 2; }
-  .g-item--large .g-img { min-height: 50vw; }
+  /* ── GALLERY ── */
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 3px; padding: 3px 8px 80px; }
+  .g-item { aspect-ratio: 4/3; }
+  .g-img { min-height: 80px !important; }
+  .g-item--large { grid-column: span 2; grid-row: span 2; aspect-ratio: unset; }
+  .g-item--large .g-img { min-height: 120px !important; }
   .g-item--wide { grid-column: span 2; }
-  .g-item--tall { grid-row: span 1; }
-  .g-item--full { grid-column: span 2; aspect-ratio: 16/9; }
+  .g-item--tall { grid-row: span 2; aspect-ratio: unset; }
+  .g-item--tall .g-img { min-height: 120px !important; }
+  .g-item--full { grid-column: span 3; aspect-ratio: 21/9; }
 
-  /* ABOUT */
+  /* ── ABOUT ── */
   #about { padding: 80px 24px; }
   .about-text { font-size: 15px; }
   .about-cta { flex-direction: column; align-items: center; }
 
-  /* FOOTER */
+  /* ── FOOTER ── */
   footer { padding: 32px 20px; flex-direction: column; gap: 8px; text-align: center; }
 }
 
