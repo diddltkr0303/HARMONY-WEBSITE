@@ -430,14 +430,35 @@ a { text-decoration: none; color: inherit; }
   padding: 160px 56px;
   text-align: center;
 }
-.about-inner { max-width: 600px; margin: 0 auto; }
-#about .section-title { margin-bottom: 56px; }
+.about-inner { max-width: 560px; margin: 0 auto; }
+#about .section-title { margin-bottom: 12px; }
+.about-affiliation {
+  font-size: 11px; font-weight: 400; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ink-faint);
+  margin-bottom: 48px;
+}
 .about-text {
-  font-size: 17px; line-height: 1.85;
-  color: var(--ink-mid); margin-bottom: 48px;
+  font-size: 16px; line-height: 2.0;
+  color: var(--ink-mid); margin-bottom: 52px;
+  max-width: 480px; margin-left: auto; margin-right: auto;
 }
 .about-cta {
   display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+}
+.about-contacts {
+  display: flex; gap: 28px; justify-content: center; flex-wrap: wrap;
+  margin-top: 48px; padding-top: 40px;
+  border-top: 1px solid rgba(0,0,0,0.07);
+}
+.about-contact-link {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 11px; font-weight: 400; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--ink-faint);
+  text-decoration: none; transition: color 0.2s;
+}
+.about-contact-link:hover { color: var(--navy); }
+.about-contact-icon {
+  width: 16px; height: 16px; flex-shrink: 0;
 }
 .btn {
   font-family: var(--display); font-size: 13px;
@@ -967,8 +988,8 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 }
 /* Connection 마지막(아이보리) 다음 Gallery — 곡선 아이보리로 */
 #gallery .shd::before { background: var(--off-white); }
-/* Teams 상단 곡선 제거 — 위 섹션과 경계에서 아이보리 띠 노출 방지 */
-#teams .shd::before { display: none; }
+/* Teams 상단 곡선 — 흰색으로 맞춰 위 섹션과 자연스럽게 이어지도록 */
+#teams .shd::before { background: var(--white); }
 
 /* 갤러리 shd 하단: 배경이미지 → 완전한 네이비로 페이드 */
 #gallery .shd-overlay {
@@ -1286,8 +1307,10 @@ body { font-family: 'Inter', sans-serif; font-weight: 300; }
 
   /* ── ABOUT ── */
   #about { padding: 80px 24px; }
-  .about-text { font-size: 15px; }
+  .about-text { font-size: 15px; max-width: 100%; }
   .about-cta { flex-direction: column; align-items: center; }
+  .about-contacts { gap: 20px; flex-direction: column; align-items: center; padding-top: 32px; margin-top: 36px; }
+  .about-contact-link { font-size: 10px; }
 
   /* ── FOOTER ── */
   footer { padding: 32px 20px; flex-direction: column; gap: 8px; text-align: center; }
@@ -2019,9 +2042,56 @@ section[id].section-visible {
   <div class="about-inner">
     <span class="section-eyebrow reveal">Creator</span>
     <h2 class="section-title reveal">Isaac Yang</h2>
-    <p class="about-text reveal i18n" data-ko="명지대학교 시각디자인과 재학 중 휴학. 스토리, 세계관, 캐릭터 디자인, 3D 모델링, 애니메이션까지 — 모든 걸 혼자 만들고 있다. 2025년 6월 25일 시작, 지금도 진행 중." data-en="On leave from the Visual Communication Design program at Myongji University. Writing the story, building the world, designing characters, 3D modeling, and animating — all solo. Started June 25, 2025. Still going.">명지대학교 시각디자인과 재학 중 휴학. 스토리, 세계관, 캐릭터 디자인, 3D 모델링, 애니메이션까지 — 모든 걸 혼자 만들고 있다. 2025년 6월 25일 시작, 지금도 진행 중.</p>
+    <p class="about-affiliation reveal">Visual Communication Design · Myongji University</p>
+    <p class="about-text reveal i18n"
+       data-ko="스토리와 세계관 구상부터<br>캐릭터 디자인, 3D 모델링, AI 활용 연구, 애니메이션 및 영상 제작까지.<br>기획과 제작의 전 과정을 홀로 맡아<br>독립적인 영화 IP HARMONY를 만들어가고 있다."
+       data-en="From story and world-building to character design, 3D modeling, and animation.<br>Every stage of development — conceived and executed alone.<br>Building an independent animated IP, HARMONY.">스토리와 세계관 구상부터 캐릭터 디자인, 3D 모델링, 애니메이션 제작까지.<br>기획과 제작의 전 과정을 홀로 맡아<br>독립적인 영화 IP HARMONY를 만들어가고 있다.</p>
     <div class="about-cta reveal">
-      <button class="btn btn-solid" onclick="goToMaking()">MAKING OF PROJECT: SHOMA</button>
+      <button class="btn btn-solid" onclick="goToMaking()">HOW DID IT ALL BEGIN?</button>
+    </div>
+    <div class="about-contacts reveal">
+      <!-- Instagram -->
+      <a class="about-contact-link" href="https://www.instagram.com/project_shoma/" target="_blank" rel="noopener">
+        <svg class="about-contact-icon" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <radialGradient id="ig-grad" cx="30%" cy="107%" r="140%">
+              <stop offset="0%" stop-color="#fdf497"/>
+              <stop offset="10%" stop-color="#fdf497"/>
+              <stop offset="30%" stop-color="#fd5949"/>
+              <stop offset="60%" stop-color="#d6249f"/>
+              <stop offset="100%" stop-color="#285AEB"/>
+            </radialGradient>
+          </defs>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="url(#ig-grad)"/>
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="none"/>
+          <circle cx="12" cy="12" r="4" fill="none" stroke="white" stroke-width="1.6"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="white"/>
+        </svg>
+        @project_shoma
+      </a>
+      <!-- YouTube -->
+      <a class="about-contact-link" href="https://www.youtube.com/@ISAACSTUDIO-x5v" target="_blank" rel="noopener">
+        <svg class="about-contact-icon" viewBox="0 0 24 24">
+          <rect x="2" y="5" width="20" height="14" rx="4" fill="#FF0000"/>
+          <polygon points="10,9 16,12 10,15" fill="white"/>
+        </svg>
+        Isaac Studio
+      </a>
+      <!-- ArtStation -->
+      <a class="about-contact-link" href="https://www.artstation.com/yang_isaactoast" target="_blank" rel="noopener">
+        <svg class="about-contact-icon" viewBox="0 0 24 24" fill="#13AFF0">
+          <path d="M2.2 17.2L6 23.2l1.5-2.6H18.5l1.3-2.3H2.2zM21.8 17.2L14.4 4H11.3l-1.5 2.6 5.7 10H12l-1.5 2.6h11.3zM9.1 13.2l3.4-5.9 3.4 5.9H9.1z"/>
+        </svg>
+        ArtStation
+      </a>
+      <!-- Email -->
+      <a class="about-contact-link" href="mailto:diddltkr0303@naver.com">
+        <svg class="about-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2"/>
+          <polyline points="2,4 12,13 22,4"/>
+        </svg>
+        diddltkr0303@naver.com
+      </a>
     </div>
   </div>
 </section>
@@ -2330,7 +2400,7 @@ document.addEventListener('keydown', e => {
           <h2 class="mk-heading">01. The Beginning</h2>
           <p class="mk-desc" style="margin-bottom:0;">군 생활 중에도 그림과 운동을 놓지 않았다. 전역을 기다리며 앞으로 무엇을 하며 살아갈지 진지하게 고민하기 시작했다.<br><br>2025년 4월 전역 후, 예전부터 도전하고 싶었던 스타일라이즈드 3D 캐릭터 제작을 시작했다. 내가 원하는 것을 직접 만들어내기 위한 첫걸음이었다.</p>
         </div>
-        <div style="padding-top:16px;">
+        <div class="mk-discharge-wrap mk-pc-only" style="padding-top:16px;">
           <div class="mk-print" style="transform:rotate(0.6deg);">
             <div class="mk-photo" data-label="전역 사진" style="aspect-ratio:16/9;background-image:url('images/making/전역사진.png')"></div>
             <p class="mk-caption">April 3, 2025 — Discharged</p>
@@ -2341,15 +2411,20 @@ document.addEventListener('keydown', e => {
       <div style="display:grid;grid-template-columns:0.8fr 0.8fr 1.3fr;gap:16px;align-items:end;">
         <div class="mk-print" style="transform:rotate(-1.0deg);max-width:85%;">
           <div class="mk-photo" data-label="군 생활 사진" style="aspect-ratio:3/4;background-image:url('images/making/군대그림2.png')"></div>
-          <p class="mk-caption">Drawing during military service</p>
+          <p class="mk-caption">David Bust Drawing</p>
         </div>
         <div class="mk-print" style="transform:rotate(0.5deg);margin-top:20px;max-width:85%;">
           <div class="mk-photo" data-label="군 생활 사진" style="aspect-ratio:3/4;background-image:url('images/making/군대그림3.png')"></div>
-          <p class="mk-caption">Drawing during military service2</p>
+          <p class="mk-caption">Samurai Girl Drawing</p>
         </div>
         <div class="mk-print" style="transform:rotate(-0.4deg)">
           <div class="mk-photo" data-label="군 생활 드로잉" style="aspect-ratio:1/1;background-image:url('images/making/군대그림1.jpg')"></div>
-          <p class="mk-caption">Drawing during military service3</p>
+          <p class="mk-caption">NewJeans..</p>
+        </div>
+        <!-- 모바일 전용: 전역 사진을 그리드 4번째 칸에 배치 -->
+        <div class="mk-print mk-mobile-only" style="transform:rotate(0.6deg);">
+          <div class="mk-photo" data-label="전역 사진" style="aspect-ratio:4/3;background-image:url('images/making/전역사진.png')"></div>
+          <p class="mk-caption">April 3, 2025 — Discharged</p>
         </div>
       </div>
     </div>
@@ -2360,42 +2435,54 @@ document.addEventListener('keydown', e => {
   <!-- ─── 02. 전역하고 나서 ─── -->
   <div style="background:#0b1626;">
     <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
-      <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;">
-        <!-- Images LEFT -->
-        <div>
-          <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
-            <div class="mk-print" style="transform:rotate(-0.8deg)">
-              <div class="mk-photo" data-label="보니 &amp; 현우" style="aspect-ratio:3/4;background-image:url('images/making/보니현우.png')"></div>
-              <p class="mk-caption">Bonnie &amp; Hyunwoo</p>
-            </div>
-            <div class="mk-print" style="transform:rotate(1.0deg);margin-top:32px;">
-              <div class="mk-photo" data-label="헤드 스컬핑" style="aspect-ratio:3/4;background-image:url('images/making/헤드스컬핑.png')"></div>
-              <p class="mk-caption">Head Sculpt Study</p>
-            </div>
+      <!--
+        PC:  col1(row1~2) = 3D 이미지들  |  col2(row1) = 텍스트
+                                          |  col2(row2) = 식단+운동
+        Mobile (flex-col): 텍스트 → 3D이미지 → 식단+운동  (HTML 순서)
+      -->
+      <div class="mk-02-grid" style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:64px;align-items:start;">
+
+        <!-- [HTML 1] 텍스트 — PC: col2 row1 -->
+        <div style="grid-column:2;grid-row:1;padding-top:48px;">
+          <p class="mk-label">APRIL – JUNE 2025</p>
+          <h2 class="mk-heading">02. 전역하고 나서</h2>
+          <p class="mk-desc">전역 전부터 체중 증량과 운동 계획을 세우고, 새로운 삶을 준비해 왔다. 전역 후에는 콜로소 3D 캐릭터 제작 강의 세 편을 바탕으로 본격적인 독학을 시작했다.<br><br>처음 접하는 3D 제작은 시행착오의 연속이었다. 문제가 생겨도 몇 시간씩 혼자 해결 방법을 찾아야 했지만, 포기하지 않고 작업을 이어갔다. 그렇게 첫 캐릭터 보니를 완성했고, 이어서 현우를 제작했다. 그러나 캐릭터 자체만으로는 아쉬움이 남았다. 캐릭터가 살아갈 세계와 이야기를 함께 만들어야겠다는 생각이 들었다.</p>
+        </div>
+
+        <!-- [HTML 2] 3D 이미지 — PC: col1 row1/3 (보니 크게 + 헤드+에러 2열) -->
+        <div style="grid-column:1;grid-row:1/3;">
+          <!-- 보니: 전체 열 너비로 크게 -->
+          <div class="mk-print" style="transform:rotate(-0.8deg);margin-bottom:20px;">
+            <div class="mk-photo" data-label="보니 &amp; 현우" style="aspect-ratio:3/4;background-image:url('images/making/보니현우.png')"></div>
+            <p class="mk-caption">Bonnie &amp; Hyunwoo</p>
           </div>
-          <div style="max-width:58%;margin-left:auto;">
-            <div class="mk-print" style="transform:rotate(-0.5deg)">
+          <!-- 헤드 스컬핑 + 에러 나란히 -->
+          <div class="mk-photo-row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+            <div class="mk-print" style="transform:rotate(1.0deg);">
+              <div class="mk-photo" data-label="헤드 스컬핑" style="aspect-ratio:3/4;background-image:url('images/making/헤드스컬핑.png')"></div>
+              <p class="mk-caption">Facial Expression Sculpting Practice</p>
+            </div>
+            <div class="mk-print" style="transform:rotate(-0.5deg);margin-top:28px;">
               <div class="mk-photo" data-label="에러" style="aspect-ratio:4/3;background-image:url('images/making/에러.jpg')"></div>
               <p class="mk-caption">What the F...</p>
             </div>
           </div>
         </div>
-        <!-- Text RIGHT -->
-        <div style="padding-top:48px;">
-          <p class="mk-label">APRIL – JUNE 2025</p>
-          <h2 class="mk-heading">02. 전역하고 나서</h2>
-          <p class="mk-desc">전역 전부터 체중 증량과 운동 계획을 세우고, 새로운 삶을 준비해 왔다. 전역 후에는 콜로소 3D 캐릭터 제작 강의 세 편을 바탕으로 본격적인 독학을 시작했다.<br><br>처음 접하는 3D 제작은 시행착오의 연속이었다. 문제가 생겨도 몇 시간씩 혼자 해결 방법을 찾아야 했지만, 포기하지 않고 작업을 이어갔다. 그렇게 첫 캐릭터 보니를 완성했고, 이어서 현우를 제작했다. 그러나 캐릭터 자체만으로는 아쉬움이 남았다. 캐릭터가 살아갈 세계와 이야기를 함께 만들어야겠다는 생각이 들었다.</p>
-          <div style="display:grid;grid-template-columns:1fr 0.525fr;gap:14px;align-items:end;margin-top:8px;">
+
+        <!-- [HTML 3] 식단+운동 — PC: col2 row2 -->
+        <div style="grid-column:2;grid-row:2;">
+          <div class="mk-diet-row" style="display:grid;grid-template-columns:1fr 0.38fr;gap:14px;align-items:end;">
             <div class="mk-print" style="transform:rotate(0.5deg)">
               <div class="mk-photo" data-label="식단 플랜" style="aspect-ratio:4/3;background-image:url('images/making/식단플랜.jpg')"></div>
               <p class="mk-caption">Diet Plan</p>
             </div>
             <div class="mk-print" style="transform:rotate(-0.7deg);margin-top:20px;">
               <div class="mk-photo" data-label="운동 플랜" style="aspect-ratio:3/4;background-image:url('images/making/운동플랜.jpg')"></div>
-              <p class="mk-caption">Workout Plan</p>
+              <p class="mk-caption">Me at the GYM</p>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -2405,7 +2492,7 @@ document.addEventListener('keydown', e => {
   <!-- ─── 03. 인생의 전환점 ─── -->
   <div style="background:#060810;">
     <div class="mk-section" style="padding:108px 32px;max-width:1600px;margin:0 auto;">
-      <div class="mk-grid" style="display:grid;grid-template-columns:5fr 2fr;gap:80px;align-items:center;">
+      <div class="mk-grid mk-03-grid" style="display:grid;grid-template-columns:5fr 2fr;gap:80px;align-items:center;">
         <div>
           <p class="mk-label" style="color:rgba(255,255,255,0.25);">MAY 2025 —</p>
           <h2 class="mk-heading">03. 인생의 전환점</h2>
@@ -2414,9 +2501,9 @@ document.addEventListener('keydown', e => {
           <p style="font-size:18px;font-weight:300;line-height:2.1;color:rgba(255,255,255,0.42);">계획했던 삶이 무너지고 통제할 수 없음에 대한 상실감과 우울감도 겪었다. 외부 활동이 줄어들며 혼자 보내는 시간이 많아졌고, 그 과정에서 삶과 미래에 대해 깊이 고민하게 되었다.</p>
         </div>
         <div>
-          <div class="mk-print" style="transform:rotate(-1.2deg);filter:brightness(0.6);margin-left:auto;">
+          <div class="mk-print mk-03-photo" style="transform:rotate(-1.2deg);filter:brightness(0.6);margin-left:auto;">
             <div class="mk-photo" data-label="At the peak — before the fall" style="aspect-ratio:3/4;background-image:url('images/making/병원사진.jpg')"></div>
-            <p class="mk-caption" style="opacity:0.45;">At the peak — before the fall</p>
+            <p class="mk-caption" style="opacity:0.45;">Lost Wings..</p>
           </div>
         </div>
       </div>
@@ -2428,30 +2515,42 @@ document.addEventListener('keydown', e => {
   <!-- ─── 04. 끝까지 붙잡은 것 ─── -->
   <div style="background:#091a2a;">
     <div class="mk-section" style="padding:90px 32px;max-width:1600px;margin:0 auto;">
-      <!-- 상단: 텍스트 좌 + Early Concept 우(작게) -->
-      <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start;margin-bottom:40px;">
-        <div style="padding-top:12px;">
+      <!--
+        PC:  col1(row1~2) = First Shoma 크게  |  col2(row1) = 텍스트
+                                               |  col2(row2) = Shoma3D + EarlyConcept 페어
+        Mobile (flex-col): 텍스트 → FirstShoma → 페어  (HTML 순서)
+      -->
+      <div class="mk-04-grid" style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:32px 64px;align-items:start;">
+
+        <!-- [HTML 1] 텍스트 — PC: col2 row1 -->
+        <div style="grid-column:2;grid-row:1;padding-top:12px;">
           <p class="mk-label">JUNE 2025 —</p>
           <h2 class="mk-heading">04. 끝까지 붙잡은 것</h2>
           <p class="mk-desc" style="margin-bottom:0;">힘든 시간 속에서도 창작에 대한 열망은 사라지지 않았다. 보니와 현우를 만들며 느꼈던 아쉬움에서 출발해, 캐릭터와 세계관을 함께 구상하기 시작했다.<br><br>그렇게 도시를 동경하는 천재 빈민가 소년이라는 아이디어가 탄생했고, 이후 쇼마 쿠로다라는 캐릭터로 발전했다.</p>
         </div>
-        <div>
-          <div class="mk-print" style="transform:rotate(-0.3deg);max-width:70%;margin-top:72px;margin-left:90px;">
-            <div class="mk-photo" data-label="쇼마 라이팅" style="aspect-ratio:4/3;background-image:url('images/making/쇼마버그.png')"></div>
-            <p class="mk-caption">Shoma Kuroda — Early Concept</p>
+
+        <!-- [HTML 2] First Shoma 크게 — PC: col1 row1/3 -->
+        <div style="grid-column:1;grid-row:1/3;">
+          <div class="mk-print" style="transform:rotate(-0.5deg)">
+            <div class="mk-photo" data-label="쇼마 스케치" style="aspect-ratio:4/3;background-image:url('images/making/쇼마스케치.png')"></div>
+            <p class="mk-caption">First Shoma — Concept</p>
           </div>
         </div>
-      </div>
-      <!-- 하단: Before / After 메인 이미지 -->
-      <div style="display:grid;grid-template-columns:1.6fr 1fr;gap:24px;align-items:end;">
-        <div class="mk-print" style="transform:rotate(-0.5deg)">
-          <div class="mk-photo" data-label="쇼마 스케치" style="aspect-ratio:4/3;background-image:url('images/making/쇼마스케치.png')"></div>
-          <p class="mk-caption">First Shoma — Concept</p>
+
+        <!-- [HTML 3] Shoma 3D + Early Concept 페어 — PC: col2 row2 -->
+        <div style="grid-column:2;grid-row:2;">
+          <div style="display:grid;grid-template-columns:1fr 0.72fr;gap:16px;align-items:end;">
+            <div class="mk-print" style="transform:rotate(0.7deg)">
+              <div class="mk-photo" data-label="쇼마 3D" style="aspect-ratio:3/4;background-image:url('images/making/쇼마차렷.png')"></div>
+              <p class="mk-caption">Shoma — 3D Model</p>
+            </div>
+            <div class="mk-print" style="transform:rotate(-0.3deg);margin-top:20px;">
+              <div class="mk-photo" data-label="쇼마 라이팅" style="aspect-ratio:4/3;background-image:url('images/making/쇼마버그.png')"></div>
+              <p class="mk-caption">Early Concept</p>
+            </div>
+          </div>
         </div>
-        <div class="mk-print" style="transform:rotate(0.7deg)">
-          <div class="mk-photo" data-label="쇼마 3D" style="aspect-ratio:3/4;background-image:url('images/making/쇼마차렷.png')"></div>
-          <p class="mk-caption">Shoma — 3D Model</p>
-        </div>
+
       </div>
     </div>
   </div>
@@ -2554,10 +2653,10 @@ document.addEventListener('keydown', e => {
 
   <!-- ─── 07. 서울로미디어캔버스 ─── -->
   <div style="background:#0a1525;">
-    <div class="mk-section" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
+    <div class="mk-section mk-text-first" style="padding:80px 32px;max-width:1600px;margin:0 auto;">
       <p class="mk-label">MARCH – MAY 2026</p>
       <h2 class="mk-heading">07. 서울로미디어캔버스</h2>
-      <div class="mk-print" style="transform:rotate(-0.1deg);margin-bottom:40px;">
+      <div class="mk-print mk-deferred-photo" style="transform:rotate(-0.1deg);margin-bottom:40px;">
         <div class="mk-photo" data-label="서울로 미디어캔버스 송출" style="aspect-ratio:4/1;background-image:url('images/making/송출장면.jpg');background-size:cover;background-position:center;"></div>
         <p class="mk-caption">Seoullo Media Canvas — 2000×500 Anamorphic Display, 2026.07–09</p>
       </div>
@@ -2585,7 +2684,7 @@ document.addEventListener('keydown', e => {
       <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1.8fr;gap:64px;align-items:start;">
         <div>
           <p class="mk-label">JUNE 2026 —</p>
-          <h2 class="mk-heading">08. PROJECT: SHOMA<br>다시 시작</h2>
+          <h2 class="mk-heading">08. 다시 시작하다</h2>
           <p class="mk-desc" style="margin-bottom:0;">미디어파사드 작업을 마무리하며 프로젝트의 방향을 다시 고민했다. 애니메이션 전체를 혼자 제작하기 어렵다면, 다른 방식으로 내가 구상한 세계를 사람들에게 전달할 수 있지 않을까?<br><br>그렇게 IP 패키지 형태의 프로젝트를 구상하고 웹사이트 제작을 시작했다. 스토리를 개선하는 동시에 새로운 캐릭터와 에셋을 기획하고 3D로 구현하며 세계관을 확장해 나갔다.</p>
         </div>
         <div style="display:flex;flex-direction:column;gap:20px;">
@@ -2623,7 +2722,7 @@ document.addEventListener('keydown', e => {
           <p class="mk-desc" style="margin-bottom:0;">현재까지 10종 이상의 캐릭터와 의상, 소품, 차량 등을 3D로 제작했다. 스토리도 여러 차례 수정과 재구성을 거쳐 완결된 시놉시스 형태로 정리했다.<br><br>제작한 에셋을 활용해 장면 이미지와 포스터, 영상 등을 만들고 있으며, 이를 하나로 연결할 공식 웹사이트를 제작하고 있다. HARMONY의 외형 디자인과 추가 캐릭터 제작은 여전히 진행 중이다. 건강도 이전보다 회복되어 운동과 식단을 조금씩 다시 이어가고 있다.</p>
         </div>
         <div style="padding-top:72px;">
-          <div class="mk-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.08);">
+          <div class="mk-grid mk-photo-row" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.08);">
             <div style="background:rgba(255,255,255,0.04);padding:20px 16px;">
               <p style="font-size:8px;letter-spacing:0.18em;text-transform:uppercase;color:#D4922A;margin-bottom:6px;">Characters</p>
               <p style="font-size:26px;font-weight:200;color:#fff;line-height:1;">10+</p>
@@ -2671,8 +2770,9 @@ document.addEventListener('keydown', e => {
   </div>
 
   <!-- ─── 11. THE NEXT CHAPTER ─── -->
-  <div style="background:linear-gradient(180deg,#090e1c 0%,#060810 100%);">
-    <div class="mk-section" style="padding:96px 32px 48px;max-width:820px;margin:0 auto;text-align:center;">
+  <div style="position:relative;overflow:hidden;background:url('images/making/마지막사진.png') center/cover no-repeat;">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,14,28,1.0) 0%,rgba(9,14,28,0.95) 15%,rgba(9,14,28,0.82) 40%,rgba(6,8,16,0.88) 70%,rgba(6,8,16,0.94) 100%);pointer-events:none;"></div>
+    <div class="mk-section" style="position:relative;z-index:1;padding:180px 32px 48px;max-width:820px;margin:0 auto;text-align:center;">
       <div style="width:48px;height:1px;background:rgba(255,255,255,0.12);margin:0 auto 56px;"></div>
 
       <p class="mk-closer-item" style="font-size:9px;font-weight:400;letter-spacing:0.28em;text-transform:uppercase;color:#D4922A;margin-bottom:44px;">10. 앞으로의 계획 — The Next Chapter</p>
@@ -2683,7 +2783,7 @@ document.addEventListener('keydown', e => {
 
       <p class="mk-closer-item" style="font-size:clamp(13px,1.4vw,16px);font-weight:300;line-height:2.2;color:rgba(255,255,255,0.62);">우선 HARMONY를 통해 내가 가진 역량과 가능성을 실제 결과물로 증명하고 싶다.<br>이후 더 큰 제작 환경에서 다양한 분야의 전문가들과 협업하며,<br>내가 구상한 이야기를 장편 영화로 완성하는 것이 궁극적인 목표다.</p>
 
-      <div class="mk-closer-item" style="margin:80px auto 0;display:flex;flex-direction:column;align-items:center;gap:20px;padding-bottom:120px;">
+      <div class="mk-closer-item" style="margin:100px auto 0;display:flex;flex-direction:column;align-items:center;gap:20px;padding-bottom:220px;">
         <div style="width:40px;height:1px;background:rgba(255,255,255,0.1);"></div>
         <p style="font-size:9px;font-weight:400;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.2);margin:0;">PROJECT: SHOMA / HARMONY — 2025</p>
       </div>
@@ -2721,6 +2821,8 @@ document.addEventListener('keydown', e => {
   font-size:10px;font-weight:300;letter-spacing:0.1em;
   color:rgba(255,255,255,0.2);text-transform:uppercase;text-align:center;padding:8px;
 }
+.mk-mobile-only { display: none; }
+
 .mk-section {
   opacity:0;
   transform:translateY(24px);
@@ -2732,8 +2834,8 @@ document.addEventListener('keydown', e => {
 }
 .mk-closer-item {
   opacity:0;
-  transform:translateY(18px);
-  transition:opacity 0.8s ease, transform 0.8s ease;
+  transform:translateY(24px);
+  transition:opacity 1.4s cubic-bezier(0.25,0.46,0.45,0.94), transform 1.4s cubic-bezier(0.25,0.46,0.45,0.94);
 }
 .mk-closer-item.mk-visible {
   opacity:1;
@@ -2759,6 +2861,47 @@ document.addEventListener('keydown', e => {
   .mk-supp-strip { max-width:100% !important; }
   .mk-pipeline-step { margin-top:0 !important; }
   [style*="align-self:flex-end"] { align-self:auto !important; width:100% !important; }
+
+  /* ── Making: inner photo grids → 2컬럼 유지 ── */
+  .mk-photo-row { grid-template-columns: 1fr 1fr !important; }
+  /* 02 에러 사진 아래 박스 — 모바일에선 폭 제한 제거 */
+  [style*="max-width:58%"] { max-width: 75% !important; }
+  /* Production Pipeline 4-col → 2×2 */
+  [style*="grid-template-columns:1fr 1fr 1fr 1.6fr"] { grid-template-columns: 1fr 1fr !important; }
+  /* 06 하단 3-col 사진 → 2-col */
+  [style*="grid-template-columns:1fr 1fr 1fr;gap:24px"] { grid-template-columns: 1fr 1fr !important; }
+  /* 08 스케치+캐릭터 페어 → 2-col */
+  [style*="grid-template-columns:2fr 3fr;gap:16px"] { grid-template-columns: 1fr 1fr !important; }
+  /* 09 하단 4-col 사진 → 2-col */
+  [style*="grid-template-columns:1fr 0.7fr 1fr 1fr"] { grid-template-columns: 1fr 1fr !important; }
+
+  /* ── 텍스트 아래 이미지 배치 원칙 ── */
+  /* 04 — 모바일: flex-col (텍스트→FirstShoma→페어) */
+  .mk-04-grid { display: flex !important; flex-direction: column !important; gap: 16px !important; }
+  .mk-04-grid > * { width: 100%; }
+
+  /* 02 — 모바일: flex-col로 HTML 순서대로 (텍스트→3D이미지→식단) */
+  .mk-02-grid { display: flex !important; flex-direction: column !important; gap: 20px !important; }
+  .mk-02-grid > * { width: 100%; }
+  /* 02 — 이미지 행간 축소 */
+  .mk-02-grid .mk-print { margin-bottom: 0 !important; }
+  .mk-02-grid [style*="margin-bottom:20px"] { margin-bottom: 10px !important; }
+  /* 02 — 식단(크게) / 운동내사진(작게) 모바일 전용 비율 */
+  .mk-diet-row { grid-template-columns: 1fr 0.65fr !important; }
+
+  /* 03 — 병원 사진 절반 크기로 + 텍스트↔이미지 여백 축소 */
+  .mk-03-photo { max-width: 50% !important; margin-left: auto; margin-right: 0; }
+  .mk-03-grid { gap: 16px !important; }
+
+  /* 07 — 파노라마 이미지를 본문 텍스트 그리드 아래로 */
+  .mk-text-first { display: flex; flex-direction: column; }
+  .mk-deferred-photo { order: 99; margin-bottom: 24px; }
+  .mk-deferred-photo + .mk-grid-4 { order: 1; }
+
+  /* 01 — 군대 그림 2열로 확대, 전역 사진은 그리드 4번째 칸으로 이동 */
+  .mk-pc-only { display: none !important; }
+  .mk-mobile-only { display: block !important; }
+  [style*="grid-template-columns:0.8fr 0.8fr 1.3fr"] { grid-template-columns: 1fr 1fr !important; }
 }
 </style>
 
@@ -2794,7 +2937,7 @@ function _initMakingObserver() {
       if (e.isIntersecting) {
         var items = e.target.querySelectorAll('.mk-closer-item');
         items.forEach(function(item, i) {
-          setTimeout(function() { item.classList.add('mk-visible'); }, i * 150);
+          setTimeout(function() { item.classList.add('mk-visible'); }, 400 + i * 500);
         });
         closerObs.unobserve(e.target);
       }
